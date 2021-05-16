@@ -32,6 +32,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.nicico.cost</groupId>
+            <artifactId>framework</artifactId>
+            <version>1.0.1-Released</version>
+        </dependency>
     </dependencies>
 
     <build>
