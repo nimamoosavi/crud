@@ -1,7 +1,9 @@
 package com.nicico.cost.crud.repository;
 
 import com.nicico.cost.crud.domain.entity.BaseEntity;
+import org.springframework.data.domain.Sort;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +21,7 @@ public interface GeneralRepository<T extends BaseEntity<I>, I extends Serializab
      * @return the Optional Of Entity that save it in data base
      * @apiNote this method used for save Data in Data base
      */
-    Optional<T> save(T t);
+    Optional<T> save(@NotNull T t);
 
     /**
      * @param id the incrementalId of data base Object
@@ -27,7 +29,7 @@ public interface GeneralRepository<T extends BaseEntity<I>, I extends Serializab
      * @return the Optional Of Entity that save it in data base
      * @apiNote this method used for Update data Base Object
      */
-    Optional<T> update(I id, T t);
+    Optional<T> update(@NotNull I id, @NotNull T t);
 
     /**
      * @param tList the list of Entity that you must save it in Data base
@@ -41,7 +43,7 @@ public interface GeneralRepository<T extends BaseEntity<I>, I extends Serializab
      * @return the Optional Of Entity that save it in data base
      * @apiNote used for fetch Data By IncrementalId
      */
-    Optional<T> findById(I id);
+    Optional<T> findById(@NotNull I id);
 
     /**
      * @return the List Of Entities
@@ -57,17 +59,25 @@ public interface GeneralRepository<T extends BaseEntity<I>, I extends Serializab
     Optional<List<T>> findAll(int page, int pageSize);
 
     /**
+     * @param page     the page number that you must fetch it
+     * @param pageSize the page Size of that you need to split Data
+     * @param orders   is the list of fields and your direction such as Asc and Desc for Sorting
+     * @return the Optional List Of Entity from Response Of Data Base
+     */
+    Optional<List<T>> findAll(int page, int pageSize, List<Sort.Order> orders);
+
+    /**
      * @return the Number Of data
      * @apiNote method used for get the count Of Data
      */
-    int count();
+    long count();
 
     /**
      * @param id is the incrementalId of Object that you need too remove it from Data Base
-     * @return the true or false Of result
+     * @throws RuntimeException has throw if Delete Method Not Acceptable
      * @apiNote Used for delete Object From Incremental Id
      */
-    Optional<Boolean> deleteById(I id);
+    void deleteById(@NotNull I id);
 
 
 }

@@ -10,9 +10,11 @@ import com.nicico.cost.framework.domain.dto.BaseDTO;
 import com.nicico.cost.framework.enums.exception.ExceptionEnum;
 import com.nicico.cost.framework.service.exception.ApplicationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 
 import javax.transaction.Transactional;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
@@ -51,7 +53,7 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      * @apiNote this method used for save in Data Base
      */
     @Transactional
-    public BaseDTO<R> save(S s) {
+    public BaseDTO<R> save(@NotNull S s) {
         T t = generalMapper.requestToEntity(s);
         T save = generalRepository.save(t).orElseThrow(
                 () -> applicationException.createApplicationException(ExceptionEnum.NOT_SAVE, HttpStatus.NOT_ACCEPTABLE)
@@ -80,7 +82,7 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      * @apiNote this method used for update the Data
      */
     @Transactional
-    public BaseDTO<R> update(S s, I id) {
+    public BaseDTO<R> update(@NotNull S s, @NotNull I id) {
         T t = generalMapper.requestToEntity(s);
         T tUpdate = generalRepository.update(id, t).orElseThrow(
                 () -> applicationException.createApplicationException(ExceptionEnum.NOT_UPDATE, HttpStatus.NOT_ACCEPTABLE)
@@ -94,11 +96,9 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      * @apiNote this methode used for delete Data with the incremental Id
      */
     @Transactional
-    public BaseDTO<Boolean> deleteById(I id) {
-        Boolean aBoolean = generalRepository.deleteById(id).orElseThrow(
-                () -> applicationException.createApplicationException(ExceptionEnum.NOT_DELETE, HttpStatus.NOT_ACCEPTABLE)
-        );
-        return successCustomResponse(aBoolean);
+    public BaseDTO<Boolean> deleteById(@NotNull I id) {
+        generalRepository.deleteById(id);
+        return successCustomResponse(true);
     }
 
 
@@ -107,7 +107,7 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      * @return BaseDTO<R> is the result of find that you can give it the Response View Model
      * @apiNote this method used for fetch data from data base with the incremental Id of object
      */
-    public BaseDTO<R> findById(I id) {
+    public BaseDTO<R> findById(@NotNull I id) {
         T t = generalRepository.findById(id).orElseThrow(
                 () -> applicationException.createApplicationException(ExceptionEnum.NOTFOUND, HttpStatus.NOT_FOUND)
         );
@@ -119,7 +119,7 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      * @return the result such as true or false
      * @apiNote used for to know that this incremental Id is in Data Base Or Not
      */
-    public BaseDTO<Boolean> existsById(I id) {
+    public BaseDTO<Boolean> existsById(@NotNull I id) {
         Optional<T> tOptional = generalRepository.findById(id);
         if (tOptional.isPresent())
             return successCustomResponse(true);
@@ -142,8 +142,21 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      * @param pageSize is the sizable page of data
      * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
      */
-    public BaseDTO<PageDTO<List<R>>> findListByPagination(Integer page, Integer pageSize) {
+    public BaseDTO<PageDTO<List<R>>> findListByPagination(int page, int pageSize) {
         List<T> tList = generalRepository.findAll(page, pageSize).orElse(Collections.emptyList());
+        List<R> rs = generalMapper.toResponseModel(tList);
+        PageDTO<List<R>> pagination = PageDTO.<List<R>>builder().pageSize(pageSize).totalElement(null).object(rs).build();
+        return successCustomResponse(pagination);
+    }
+
+    /**
+     * @param page     is the number of page you need to fetch
+     * @param pageSize is the sizable page of data
+     * @param orders   orders is the list of fields and your direction such as Asc and Desc
+     * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
+     */
+    public BaseDTO<PageDTO<List<R>>> findListByPagination(int page, int pageSize, List<Sort.Order> orders) {
+        List<T> tList = generalRepository.findAll(page, pageSize, orders).orElse(Collections.emptyList());
         List<R> rs = generalMapper.toResponseModel(tList);
         PageDTO<List<R>> pagination = PageDTO.<List<R>>builder().pageSize(pageSize).totalElement(null).object(rs).build();
         return successCustomResponse(pagination);
@@ -156,9 +169,24 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
      * @apiNote this method call count method and return the count of data
      */
-    public BaseDTO<PageDTO<List<R>>> findByPagination(Integer page, Integer pageSize) {
+    public BaseDTO<PageDTO<List<R>>> findByPagination(int page, int pageSize) {
         Long count = count().getData();
         List<T> tList = generalRepository.findAll(page, pageSize).orElse(Collections.emptyList());
+        List<R> rs = generalMapper.toResponseModel(tList);
+        PageDTO<List<R>> pagination = PageDTO.<List<R>>builder().pageSize(pageSize).totalElement(count).object(rs).build();
+        return successCustomResponse(pagination);
+    }
+
+    /**
+     * @param page     is the number of page you need to fetch
+     * @param pageSize is the sizable page of data
+     * @param orders   orders is the list of fields and your direction such as Asc and Desc
+     * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
+     * @apiNote this method call count method and return the count of data
+     */
+    public BaseDTO<PageDTO<List<R>>> findByPagination(int page, int pageSize, List<Sort.Order> orders) {
+        Long count = count().getData();
+        List<T> tList = generalRepository.findAll(page, pageSize, orders).orElse(Collections.emptyList());
         List<R> rs = generalMapper.toResponseModel(tList);
         PageDTO<List<R>> pagination = PageDTO.<List<R>>builder().pageSize(pageSize).totalElement(count).object(rs).build();
         return successCustomResponse(pagination);

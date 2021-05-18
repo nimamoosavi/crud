@@ -8,6 +8,7 @@ import com.nicico.cost.framework.domain.dto.BaseDTO;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -112,6 +113,19 @@ public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseR
     /**
      * @param page     is the number of page you need to fetch
      * @param pageSize is the sizable page of data
+     * @param orders   is the list of fields and your direction such as Asc and Desc for Sorting
+     * @return ResponseEntity<BaseDTO < PageDTO < List < R>>>> this methode return PageDTO that is all data in it
+     */
+    @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
+            @ApiImplicitParam(name = APP_KEY, value = APP_KEY, required = true, dataType = "string", paramType = "header")})
+    @PostMapping(value = "/all/pagination")
+    public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findListByPagination(@Valid @RequestParam Integer page, @RequestParam Integer pageSize, @RequestBody List<Sort.Order> orders) {
+        return new ResponseEntity<>(generalService.findListByPagination(page, pageSize, orders), HttpStatus.OK);
+    }
+
+    /**
+     * @param page     is the number of page you need to fetch
+     * @param pageSize is the sizable page of data
      * @return ResponseEntity<BaseDTO < PageDTO < List < R>>>> this methode return PageDTO that is all data in it
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
@@ -119,6 +133,19 @@ public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseR
     @GetMapping(value = "/all/pagination/detail")
     public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findByPagination(@Valid @RequestParam Integer page, @RequestParam Integer pageSize) {
         return new ResponseEntity<>(generalService.findByPagination(page, pageSize), HttpStatus.OK);
+    }
+
+    /**
+     * @param page     is the number of page you need to fetch
+     * @param pageSize is the sizable page of data
+     * @param orders   is the list of fields and your direction such as Asc and Desc for Sorting for Sorting
+     * @return ResponseEntity<BaseDTO < PageDTO < List < R>>>> this methode return PageDTO that is all data in it
+     */
+    @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
+            @ApiImplicitParam(name = APP_KEY, value = APP_KEY, required = true, dataType = "string", paramType = "header")})
+    @PostMapping(value = "/all/pagination/detail")
+    public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findByPagination(@Valid @RequestParam Integer page, @RequestParam Integer pageSize, @RequestBody List<Sort.Order> orders) {
+        return new ResponseEntity<>(generalService.findByPagination(page, pageSize, orders), HttpStatus.OK);
     }
 
     /**
