@@ -36,14 +36,14 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
     /**
      * this class used for Repository layer that you must impl of method
      */
-    @Autowired
+    @Autowired(required = false)
     public GeneralRepository<T, I> generalRepository;
     @Autowired
     public ApplicationException applicationException;
     /**
      * general Mapper used MapStruct for cast Request view Model And Response View Model And Entity to each Other
      */
-    @Autowired
+    @Autowired(required = false)
     public GeneralMapper<T, S, R, I> generalMapper;
 
 

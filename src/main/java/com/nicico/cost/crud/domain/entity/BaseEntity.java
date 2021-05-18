@@ -5,10 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.io.Serializable;
 
 
@@ -17,11 +15,12 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @MappedSuperclass
-public class BaseEntity<I extends Serializable> implements Serializable {
+public abstract class BaseEntity<I extends Serializable> implements Serializable {
     @Transient
     private static final long serialVersionUID = 64882529036694162L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private I id;
 
 
