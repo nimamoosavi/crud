@@ -123,7 +123,7 @@ public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseR
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = APP_KEY, value = APP_KEY, required = true, dataType = "string", paramType = "header")})
     @PostMapping(value = "/all/pagination")
-    public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findListByPagination(@Valid @RequestParam Integer page, @RequestParam Integer pageSize, @RequestBody List<Sort.Order> orders) {
+    public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findListByPagination(@Valid @RequestParam Integer page, @RequestParam Integer pageSize, @RequestBody String orders) {
         return new ResponseEntity<>(generalService.findListByPagination(page, pageSize, orders), HttpStatus.OK);
     }
 
@@ -150,7 +150,7 @@ public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseR
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = APP_KEY, value = APP_KEY, required = true, dataType = "string", paramType = "header")})
     @PostMapping(value = "/all/pagination/detail")
-    public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findByPagination(@Valid @RequestParam Integer page, @RequestParam Integer pageSize, @RequestBody List<Sort.Order> orders) {
+    public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findByPagination(@Valid @RequestParam Integer page, @RequestParam Integer pageSize, @RequestBody String orders) {
         return new ResponseEntity<>(generalService.findByPagination(page, pageSize, orders), HttpStatus.OK);
     }
 

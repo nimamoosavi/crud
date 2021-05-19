@@ -10,10 +10,10 @@ import com.nicico.cost.framework.domain.dto.BaseDTO;
 import com.nicico.cost.framework.enums.exception.ExceptionEnum;
 import com.nicico.cost.framework.service.exception.ApplicationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Collections;
@@ -156,7 +156,7 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      * @param orders   orders is the list of fields and your direction such as Asc and Desc
      * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
      */
-    public BaseDTO<PageDTO<List<R>>> findListByPagination(int page, int pageSize, List<Sort.Order> orders) {
+    public BaseDTO<PageDTO<List<R>>> findListByPagination(int page, int pageSize, String orders) {
         List<T> tList = generalRepository.findAll(page, pageSize, orders).orElse(Collections.emptyList());
         List<R> rs = generalMapper.toResponseModel(tList);
         PageDTO<List<R>> pagination = PageDTO.<List<R>>builder().pageSize(pageSize).totalElement(null).object(rs).build();
@@ -185,7 +185,7 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
      * @apiNote this method call count method and return the count of data
      */
-    public BaseDTO<PageDTO<List<R>>> findByPagination(int page, int pageSize, List<Sort.Order> orders) {
+    public BaseDTO<PageDTO<List<R>>> findByPagination(int page, int pageSize, String orders) {
         Long count = count().getData();
         List<T> tList = generalRepository.findAll(page, pageSize, orders).orElse(Collections.emptyList());
         List<R> rs = generalMapper.toResponseModel(tList);

@@ -1,7 +1,6 @@
 package com.nicico.cost.crud.repository;
 
 import com.nicico.cost.crud.domain.entity.BaseEntity;
-import org.springframework.data.domain.Sort;
 
 import java.io.Serializable;
 import java.util.List;
@@ -28,7 +27,7 @@ public interface GeneralRepository<T extends BaseEntity<I>, I extends Serializab
      * @return the Optional Of Entity that save it in data base
      * @apiNote this method used for Update data Base Object
      */
-    Optional<T> update(I id,T t);
+    Optional<T> update(I id, T t);
 
     /**
      * @param tList the list of Entity that you must save it in Data base
@@ -63,7 +62,7 @@ public interface GeneralRepository<T extends BaseEntity<I>, I extends Serializab
      * @param orders   is the list of fields and your direction such as Asc and Desc for Sorting
      * @return the Optional List Of Entity from Response Of Data Base
      */
-    Optional<List<T>> findAll(int page, int pageSize, List<Sort.Order> orders);
+    Optional<List<T>> findAll(int page, int pageSize, String orders);
 
     /**
      * @return the Number Of data
