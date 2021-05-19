@@ -54,6 +54,7 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      */
     @Transactional
     public BaseDTO<R> save(@NotNull S s) {
+
         T t = generalMapper.requestToEntity(s);
         T save = generalRepository.save(t).orElseThrow(
                 () -> applicationException.createApplicationException(ExceptionEnum.NOT_SAVE, HttpStatus.NOT_ACCEPTABLE)
