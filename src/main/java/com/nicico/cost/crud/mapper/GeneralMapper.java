@@ -41,21 +41,21 @@ public abstract class GeneralMapper<T, S, R extends BaseResVM<I>, I extends Seri
      * @return the list of Entity
      * @apiNote method used for cast List Response View Model to List Entity
      */
-    public abstract List<T> requestToEntity(List<S> sourceList);
+    public abstract Iterable<T> requestToEntity(Iterable<S> sourceList);
 
     /**
      * @param targetList the list of Response View Model
      * @return the List Of Request View Model
      * @apiNote method used for cast List Response View Model to List Request View Model
      */
-    public abstract List<S> toRequestModel(List<R> targetList);
+    public abstract Iterable<S> toRequestModel(Iterable<R> targetList);
 
     /**
      * @param targetList the List Of Entity
      * @return the List of Response View Model
-     * @apiNote method used for cast List Of Entity to List Of Request View Model
+     * @apiNote method used for cast Iterable Of Entity to List Of Request View Model
      */
-    public abstract List<S> toRequestModels(List<T> targetList);
+    public abstract Iterable<S> toRequestModels(Iterable<T> targetList);
 
     /**
      * @param source the Response View Model
@@ -74,23 +74,23 @@ public abstract class GeneralMapper<T, S, R extends BaseResVM<I>, I extends Seri
     /**
      * @param sourceList the List Of Response View Model
      * @return the list Of Entity
-     * @apiNote used for cast List of Response to List Of Entity
+     * @apiNote used for cast Iterable of Response to List Of Entity
      */
-    public abstract List<T> responseToEntity(List<R> sourceList);
+    public abstract Iterable<T> responseToEntity(Iterable<R> sourceList);
 
     /**
      * @param targetList the List of Entity
      * @return the List Of Response View Model
-     * @apiNote used for cast to List of Entity to List Of Response
+     * @apiNote used for cast to Iterable of Entity to List Of Response
      */
-    public abstract List<R> toResponseModel(List<T> targetList);
+    public abstract Iterable<R> toResponseModel(Iterable<T> targetList);
 
 
     public BaseDTO<T> mapRequestToEntity(S s) {
         return successCustomResponse(requestToEntity(s));
     }
 
-    public BaseDTO<List<T>> mapListRequestToEntity(List<S> s) {
+    public BaseDTO<Iterable<T>> mapListRequestToEntity(Iterable<S> s) {
         return successCustomListResponse(requestToEntity(s));
     }
 
@@ -98,7 +98,7 @@ public abstract class GeneralMapper<T, S, R extends BaseResVM<I>, I extends Seri
         return successCustomResponse(toRequestModel(t));
     }
 
-    public BaseDTO<List<S>> mapListEntityToRequest(List<T> t) {
+    public BaseDTO<Iterable<S>> mapListEntityToRequest(Iterable<T> t) {
         return successCustomResponse(toRequestModels(t));
     }
 
@@ -106,7 +106,7 @@ public abstract class GeneralMapper<T, S, R extends BaseResVM<I>, I extends Seri
         return successCustomResponse(toResponseModel(t));
     }
 
-    public BaseDTO<List<R>> mapListEntityToResponse(List<T> t) {
+    public BaseDTO<Iterable<R>> mapListEntityToResponse(Iterable<T> t) {
         return successCustomListResponse(toResponseModel(t));
     }
 
@@ -114,7 +114,7 @@ public abstract class GeneralMapper<T, S, R extends BaseResVM<I>, I extends Seri
         return successCustomResponse(responseToEntity(r));
     }
 
-    public BaseDTO<List<T>> mapListResponseToEntity(List<R> r) {
+    public BaseDTO<Iterable<T>> mapListResponseToEntity(Iterable<R> r) {
         return successCustomListResponse(responseToEntity(r));
     }
 

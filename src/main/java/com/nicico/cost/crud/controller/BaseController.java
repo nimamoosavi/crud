@@ -8,7 +8,6 @@ import com.nicico.cost.framework.domain.dto.BaseDTO;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -96,7 +95,7 @@ public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseR
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = APP_KEY, value = APP_KEY, required = true, dataType = "string", paramType = "header")})
     @GetMapping(value = "/all")
-    public ResponseEntity<BaseDTO<List<R>>> getAll() {
+    public ResponseEntity<BaseDTO<Iterable<R>>> getAll() {
         return new ResponseEntity<>(generalService.getAll(), HttpStatus.OK);
     }
 
@@ -109,7 +108,7 @@ public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseR
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = APP_KEY, value = APP_KEY, required = true, dataType = "string", paramType = "header")})
     @GetMapping(value = "/all/pagination")
-    public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findListByPagination(@Valid @RequestParam Integer page, @RequestParam Integer pageSize) {
+    public ResponseEntity<BaseDTO<PageDTO<Iterable<R>>>> findListByPagination(@Valid @RequestParam Integer page, @RequestParam Integer pageSize) {
         return new ResponseEntity<>(generalService.findListByPagination(page, pageSize), HttpStatus.OK);
     }
 
@@ -123,7 +122,7 @@ public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseR
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = APP_KEY, value = APP_KEY, required = true, dataType = "string", paramType = "header")})
     @PostMapping(value = "/all/pagination")
-    public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findListByPagination(@Valid @RequestParam Integer page, @RequestParam Integer pageSize, @RequestBody String orders) {
+    public ResponseEntity<BaseDTO<PageDTO<Iterable<R>>>> findListByPagination(@Valid @RequestParam Integer page, @RequestParam Integer pageSize, @RequestBody String orders) {
         return new ResponseEntity<>(generalService.findListByPagination(page, pageSize, orders), HttpStatus.OK);
     }
 
@@ -136,7 +135,7 @@ public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseR
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = APP_KEY, value = APP_KEY, required = true, dataType = "string", paramType = "header")})
     @GetMapping(value = "/all/pagination/detail")
-    public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findByPagination(@Valid @RequestParam Integer page, @RequestParam Integer pageSize) {
+    public ResponseEntity<BaseDTO<PageDTO<Iterable<R>>>> findByPagination(@Valid @RequestParam Integer page, @RequestParam Integer pageSize) {
         return new ResponseEntity<>(generalService.findByPagination(page, pageSize), HttpStatus.OK);
     }
 
@@ -150,7 +149,7 @@ public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseR
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = APP_KEY, value = APP_KEY, required = true, dataType = "string", paramType = "header")})
     @PostMapping(value = "/all/pagination/detail")
-    public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findByPagination(@Valid @RequestParam Integer page, @RequestParam Integer pageSize, @RequestBody String orders) {
+    public ResponseEntity<BaseDTO<PageDTO<Iterable<R>>>> findByPagination(@Valid @RequestParam Integer page, @RequestParam Integer pageSize, @RequestBody String orders) {
         return new ResponseEntity<>(generalService.findByPagination(page, pageSize, orders), HttpStatus.OK);
     }
 
