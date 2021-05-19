@@ -13,10 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,11 +52,8 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      */
     @Transactional
     public BaseDTO<R> save(@NotNull S s) {
-
         T t = generalMapper.requestToEntity(s);
-        T save = generalRepository.save(t).orElseThrow(
-                () -> applicationException.createApplicationException(ExceptionEnum.NOT_SAVE, HttpStatus.NOT_ACCEPTABLE)
-        );
+        T save = generalRepository.save(t);
         return generalMapper.mapEntityToResponse(save);
     }
 
@@ -70,9 +65,7 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
     @Transactional
     public BaseDTO<List<R>> saveAll(List<S> sList) {
         List<T> tList = generalMapper.requestToEntity(sList);
-        List<T> save = generalRepository.saveAll(tList).orElseThrow(
-                () -> applicationException.createApplicationException(ExceptionEnum.NOT_SAVE, HttpStatus.NOT_ACCEPTABLE)
-        );
+        List<T> save = generalRepository.saveAll(tList);
         return generalMapper.mapListEntityToResponse(save);
     }
 
@@ -85,9 +78,7 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
     @Transactional
     public BaseDTO<R> update(@NotNull S s, @NotNull I id) {
         T t = generalMapper.requestToEntity(s);
-        T tUpdate = generalRepository.update(id, t).orElseThrow(
-                () -> applicationException.createApplicationException(ExceptionEnum.NOT_UPDATE, HttpStatus.NOT_ACCEPTABLE)
-        );
+        T tUpdate = generalRepository.update(id, t);
         return generalMapper.mapEntityToResponse(tUpdate);
     }
 
@@ -134,7 +125,7 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      * you can choose the method findListByPagination(...) and findByPagination(..) for fetch by pagination
      */
     public BaseDTO<List<R>> getAll() {
-        List<T> tList = generalRepository.findAll().orElse(Collections.emptyList());
+        List<T> tList = generalRepository.findAll();
         return generalMapper.mapListEntityToResponse(tList);
     }
 
@@ -144,7 +135,7 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
      */
     public BaseDTO<PageDTO<List<R>>> findListByPagination(int page, int pageSize) {
-        List<T> tList = generalRepository.findAll(page, pageSize).orElse(Collections.emptyList());
+        List<T> tList = generalRepository.findAll(page, pageSize);
         List<R> rs = generalMapper.toResponseModel(tList);
         PageDTO<List<R>> pagination = PageDTO.<List<R>>builder().pageSize(pageSize).totalElement(null).object(rs).build();
         return successCustomResponse(pagination);
@@ -157,7 +148,7 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
      */
     public BaseDTO<PageDTO<List<R>>> findListByPagination(int page, int pageSize, String orders) {
-        List<T> tList = generalRepository.findAll(page, pageSize, orders).orElse(Collections.emptyList());
+        List<T> tList = generalRepository.findAll(page, pageSize, orders);
         List<R> rs = generalMapper.toResponseModel(tList);
         PageDTO<List<R>> pagination = PageDTO.<List<R>>builder().pageSize(pageSize).totalElement(null).object(rs).build();
         return successCustomResponse(pagination);
@@ -172,7 +163,7 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      */
     public BaseDTO<PageDTO<List<R>>> findByPagination(int page, int pageSize) {
         Long count = count().getData();
-        List<T> tList = generalRepository.findAll(page, pageSize).orElse(Collections.emptyList());
+        List<T> tList = generalRepository.findAll(page, pageSize);
         List<R> rs = generalMapper.toResponseModel(tList);
         PageDTO<List<R>> pagination = PageDTO.<List<R>>builder().pageSize(pageSize).totalElement(count).object(rs).build();
         return successCustomResponse(pagination);
@@ -187,7 +178,7 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      */
     public BaseDTO<PageDTO<List<R>>> findByPagination(int page, int pageSize, String orders) {
         Long count = count().getData();
-        List<T> tList = generalRepository.findAll(page, pageSize, orders).orElse(Collections.emptyList());
+        List<T> tList = generalRepository.findAll(page, pageSize, orders);
         List<R> rs = generalMapper.toResponseModel(tList);
         PageDTO<List<R>> pagination = PageDTO.<List<R>>builder().pageSize(pageSize).totalElement(count).object(rs).build();
         return successCustomResponse(pagination);

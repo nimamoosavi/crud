@@ -19,7 +19,7 @@ public interface GeneralRepository<T extends BaseEntity<I>, I extends Serializab
      * @return the Optional Of Entity that save it in data base
      * @apiNote this method used for save Data in Data base
      */
-    Optional<T> save(T t);
+    T save(T t);
 
     /**
      * @param id the incrementalId of data base Object
@@ -27,14 +27,14 @@ public interface GeneralRepository<T extends BaseEntity<I>, I extends Serializab
      * @return the Optional Of Entity that save it in data base
      * @apiNote this method used for Update data Base Object
      */
-    Optional<T> update(I id, T t);
+    T update(I id, T t);
 
     /**
      * @param tList the list of Entity that you must save it in Data base
      * @return the Optional List Of Entity and their Ids
      * @apiNote used for save the batch of Data in Data base
      */
-    Optional<List<T>> saveAll(List<T> tList);
+    List<T> saveAll(List<T> tList);
 
     /**
      * @param id the incrementalId of data base Object
@@ -47,14 +47,14 @@ public interface GeneralRepository<T extends BaseEntity<I>, I extends Serializab
      * @return the List Of Entities
      * @apiNote this methode uses for Fetch All Data
      */
-    Optional<List<T>> findAll();
+    List<T> findAll();
 
     /**
      * @param page     the page number that you must fetch it
      * @param pageSize the page Size of that you need to split Data
      * @return the Optional List Of Entity from Response Of Data Base
      */
-    Optional<List<T>> findAll(int page, int pageSize);
+    List<T> findAll(int page, int pageSize);
 
     /**
      * @param page     the page number that you must fetch it
@@ -62,7 +62,7 @@ public interface GeneralRepository<T extends BaseEntity<I>, I extends Serializab
      * @param orders   is the list of fields and your direction such as Asc and Desc for Sorting
      * @return the Optional List Of Entity from Response Of Data Base
      */
-    Optional<List<T>> findAll(int page, int pageSize, String orders);
+    List<T> findAll(int page, int pageSize, String orders);
 
     /**
      * @return the Number Of data
