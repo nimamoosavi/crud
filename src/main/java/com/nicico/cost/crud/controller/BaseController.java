@@ -43,8 +43,8 @@ public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseR
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header")})
     @PostMapping
-    public ResponseEntity<BaseDTO<R>> save(@Valid @RequestBody S s) {
-        return new ResponseEntity<>(generalService.save(s), HttpStatus.OK);
+    public ResponseEntity<BaseDTO<R>> create(@Valid @RequestBody S s) {
+        return new ResponseEntity<>(generalService.create(s), HttpStatus.CREATED);
     }
 
     /**

@@ -51,7 +51,7 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      * @apiNote this method used for save in Data Base
      */
     @Transactional
-    public BaseDTO<R> save(@NotNull S s) {
+    public BaseDTO<R> create(@NotNull S s) {
         T t = generalMapper.requestToEntity(s);
         T save = generalRepository.save(t);
         return generalMapper.mapEntityToResponse(save);
