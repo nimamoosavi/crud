@@ -41,21 +41,21 @@ public abstract class GeneralMapper<T, S, R extends BaseResVM<I>, I extends Seri
      * @return the list of Entity
      * @apiNote method used for cast List Response View Model to List Entity
      */
-    public abstract Iterable<T> requestToEntity(Iterable<S> sourceList);
+    public abstract List<T> requestToEntity(List<S> sourceList);
 
     /**
      * @param targetList the list of Response View Model
      * @return the List Of Request View Model
      * @apiNote method used for cast List Response View Model to List Request View Model
      */
-    public abstract Iterable<S> toRequestModel(Iterable<R> targetList);
+    public abstract List<S> toRequestModel(List<R> targetList);
 
     /**
      * @param targetList the List Of Entity
      * @return the List of Response View Model
      * @apiNote method used for cast Iterable Of Entity to List Of Request View Model
      */
-    public abstract Iterable<S> toRequestModels(Iterable<T> targetList);
+    public abstract List<S> toRequestModels(List<T> targetList);
 
     /**
      * @param source the Response View Model
@@ -76,21 +76,21 @@ public abstract class GeneralMapper<T, S, R extends BaseResVM<I>, I extends Seri
      * @return the list Of Entity
      * @apiNote used for cast Iterable of Response to List Of Entity
      */
-    public abstract Iterable<T> responseToEntity(Iterable<R> sourceList);
+    public abstract List<T> responseToEntity(List<R> sourceList);
 
     /**
      * @param targetList the List of Entity
      * @return the List Of Response View Model
      * @apiNote used for cast to Iterable of Entity to List Of Response
      */
-    public abstract Iterable<R> toResponseModel(Iterable<T> targetList);
+    public abstract List<R> toResponseModel(List<T> targetList);
 
 
     public BaseDTO<T> mapRequestToEntity(S s) {
         return successCustomResponse(requestToEntity(s));
     }
 
-    public BaseDTO<Iterable<T>> mapListRequestToEntity(Iterable<S> s) {
+    public BaseDTO<List<T>> mapListRequestToEntity(List<S> s) {
         return successCustomListResponse(requestToEntity(s));
     }
 
@@ -98,7 +98,7 @@ public abstract class GeneralMapper<T, S, R extends BaseResVM<I>, I extends Seri
         return successCustomResponse(toRequestModel(t));
     }
 
-    public BaseDTO<Iterable<S>> mapListEntityToRequest(Iterable<T> t) {
+    public BaseDTO<List<S>> mapListEntityToRequest(List<T> t) {
         return successCustomResponse(toRequestModels(t));
     }
 
@@ -106,7 +106,7 @@ public abstract class GeneralMapper<T, S, R extends BaseResVM<I>, I extends Seri
         return successCustomResponse(toResponseModel(t));
     }
 
-    public BaseDTO<Iterable<R>> mapListEntityToResponse(Iterable<T> t) {
+    public BaseDTO<List<R>> mapListEntityToResponse(List<T> t) {
         return successCustomListResponse(toResponseModel(t));
     }
 
@@ -114,7 +114,7 @@ public abstract class GeneralMapper<T, S, R extends BaseResVM<I>, I extends Seri
         return successCustomResponse(responseToEntity(r));
     }
 
-    public BaseDTO<Iterable<T>> mapListResponseToEntity(Iterable<R> r) {
+    public BaseDTO<List<T>> mapListResponseToEntity(List<R> r) {
         return successCustomListResponse(responseToEntity(r));
     }
 

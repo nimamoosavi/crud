@@ -63,9 +63,9 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      * @apiNote this method used for save batch in Data base
      */
     @Transactional
-    public BaseDTO<Iterable<R>> saveAll(Iterable<S> sList) {
-        Iterable<T> tList = generalMapper.requestToEntity(sList);
-        Iterable<T> save = generalRepository.saveAll(tList);
+    public BaseDTO<List<R>> saveAll(List<S> sList) {
+        List<T> tList = generalMapper.requestToEntity(sList);
+        List<T> save = generalRepository.saveAll(tList);
         return generalMapper.mapListEntityToResponse(save);
     }
 
@@ -124,8 +124,8 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      * @apiNote thi method used for get all data from data base that you must know that the cost of this method is very expensive
      * you can choose the method findListByPagination(...) and findByPagination(..) for fetch by pagination
      */
-    public BaseDTO<Iterable<R>> getAll() {
-        Iterable<T> tList = generalRepository.findAll();
+    public BaseDTO<List<R>> getAll() {
+        List<T> tList = generalRepository.findAll();
         return generalMapper.mapListEntityToResponse(tList);
     }
 
@@ -134,10 +134,10 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      * @param pageSize is the sizable page of data
      * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
      */
-    public BaseDTO<PageDTO<Iterable<R>>> findListByPagination(int page, int pageSize) {
-        Iterable<T> tList = generalRepository.findAll(page, pageSize);
-        Iterable<R> rs = generalMapper.toResponseModel(tList);
-        PageDTO<Iterable<R>> pagination = PageDTO.<Iterable<R>>builder().pageSize(pageSize).totalElement(null).object(rs).build();
+    public BaseDTO<PageDTO<List<R>>> findListByPagination(int page, int pageSize) {
+        List<T> tList = generalRepository.findAll(page, pageSize);
+        List<R> rs = generalMapper.toResponseModel(tList);
+        PageDTO<List<R>> pagination = PageDTO.<List<R>>builder().pageSize(pageSize).totalElement(null).object(rs).build();
         return successCustomResponse(pagination);
     }
 
@@ -147,10 +147,10 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      * @param orders   orders is the list of fields and your direction such as Asc and Desc
      * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
      */
-    public BaseDTO<PageDTO<Iterable<R>>> findListByPagination(int page, int pageSize, String orders) {
-        Iterable<T> tList = generalRepository.findAll(page, pageSize, orders);
-        Iterable<R> rs = generalMapper.toResponseModel(tList);
-        PageDTO<Iterable<R>> pagination = PageDTO.<Iterable<R>>builder().pageSize(pageSize).totalElement(null).object(rs).build();
+    public BaseDTO<PageDTO<List<R>>> findListByPagination(int page, int pageSize, String orders) {
+        List<T> tList = generalRepository.findAll(page, pageSize, orders);
+        List<R> rs = generalMapper.toResponseModel(tList);
+        PageDTO<List<R>> pagination = PageDTO.<List<R>>builder().pageSize(pageSize).totalElement(null).object(rs).build();
         return successCustomResponse(pagination);
     }
 
@@ -161,11 +161,11 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
      * @apiNote this method call count method and return the count of data
      */
-    public BaseDTO<PageDTO<Iterable<R>>> findByPagination(int page, int pageSize) {
+    public BaseDTO<PageDTO<List<R>>> findByPagination(int page, int pageSize) {
         Long count = count().getData();
-        Iterable<T> tList = generalRepository.findAll(page, pageSize);
-        Iterable<R> rs = generalMapper.toResponseModel(tList);
-        PageDTO<Iterable<R>> pagination = PageDTO.<Iterable<R>>builder().pageSize(pageSize).totalElement(count).object(rs).build();
+        List<T> tList = generalRepository.findAll(page, pageSize);
+        List<R> rs = generalMapper.toResponseModel(tList);
+        PageDTO<List<R>> pagination = PageDTO.<List<R>>builder().pageSize(pageSize).totalElement(count).object(rs).build();
         return successCustomResponse(pagination);
     }
 
@@ -176,11 +176,11 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
      * @apiNote this method call count method and return the count of data
      */
-    public BaseDTO<PageDTO<Iterable<R>>> findByPagination(int page, int pageSize, String orders) {
+    public BaseDTO<PageDTO<List<R>>> findByPagination(int page, int pageSize, String orders) {
         Long count = count().getData();
-        Iterable<T> tList = generalRepository.findAll(page, pageSize, orders);
-        Iterable<R> rs = generalMapper.toResponseModel(tList);
-        PageDTO<Iterable<R>> pagination = PageDTO.<Iterable<R>>builder().pageSize(pageSize).totalElement(count).object(rs).build();
+        List<T> tList = generalRepository.findAll(page, pageSize, orders);
+        List<R> rs = generalMapper.toResponseModel(tList);
+        PageDTO<List<R>> pagination = PageDTO.<List<R>>builder().pageSize(pageSize).totalElement(count).object(rs).build();
         return successCustomResponse(pagination);
     }
 

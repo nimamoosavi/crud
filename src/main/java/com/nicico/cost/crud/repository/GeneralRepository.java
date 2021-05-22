@@ -34,7 +34,8 @@ public interface GeneralRepository<T extends BaseEntity<I>, I extends Serializab
      * @return the Optional List Of Entity and their Ids
      * @apiNote used for save the batch of Data in Data base
      */
-    Iterable<T> saveAll(Iterable<T> tList);
+    List<T> saveAll(List<T> tList);
+
 
     /**
      * @param id the incrementalId of data base Object
