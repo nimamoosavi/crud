@@ -92,7 +92,7 @@ public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseR
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header")})
     @GetMapping(value = "/all")
-    public ResponseEntity<BaseDTO<List<R>>> getAll() {
+    public ResponseEntity<BaseDTO<List<R>>> findAll() {
         return new ResponseEntity<>(generalService.getAll(), HttpStatus.OK);
     }
 
