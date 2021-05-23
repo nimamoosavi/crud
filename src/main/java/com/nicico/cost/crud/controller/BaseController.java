@@ -16,7 +16,8 @@ import javax.validation.Valid;
 import java.io.Serializable;
 import java.util.List;
 
-import static com.nicico.cost.framework.config.general.GeneralStatic.*;
+import static com.nicico.cost.framework.config.general.GeneralStatic.AUTHORIZATION;
+import static com.nicico.cost.framework.config.general.GeneralStatic.CORRELATION_ID;
 
 /**
  * @param <T> is the entity class that you must Extended to BaseEntity class {@link com.nicico.cost.crud.domain.entity.BaseEntity}
@@ -83,6 +84,7 @@ public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseR
     public ResponseEntity<BaseDTO<R>> findByID(@Valid @RequestParam I id) {
         return new ResponseEntity<>(generalService.findById(id), HttpStatus.OK);
     }
+
 
     /**
      * @return ResponseEntity<BaseDTO < List < R>>> that R the view model you must add to controller
