@@ -16,9 +16,7 @@ import javax.validation.Valid;
 import java.io.Serializable;
 import java.util.List;
 
-
-import static com.nicico.cost.framework.config.general.GeneralStatic.AUTHORIZATION;
-import static com.nicico.cost.framework.config.general.GeneralStatic.CORRELATION_ID;
+import static com.nicico.cost.framework.config.general.GeneralStatic.*;
 
 /**
  *
@@ -44,7 +42,8 @@ public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseR
      * @apiNote this method save data to DataBase that you must implemented in repository layer
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
-            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header")})
+            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
+            @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
     @PostMapping
     public ResponseEntity<BaseDTO<R>> create(@Valid @RequestBody S s) {
         return new ResponseEntity<>(generalService.create(s), HttpStatus.CREATED);
@@ -57,7 +56,8 @@ public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseR
      * @apiNote this method save data to DataBase that you must implemented in repository layer
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
-            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header")})
+            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
+            @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
     @PutMapping
     public ResponseEntity<BaseDTO<R>> update(@Valid @RequestBody S s, @Valid @RequestParam I id) {
         return new ResponseEntity<>(generalService.update(s, id), HttpStatus.OK);
@@ -69,7 +69,8 @@ public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseR
      * @apiNote used for delete an entity from data base
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
-            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header")})
+            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
+            @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
     @DeleteMapping
     public ResponseEntity<BaseDTO<Boolean>> deleteById(@Valid @RequestParam I id) {
         return new ResponseEntity<>(generalService.deleteById(id), HttpStatus.OK);
@@ -81,7 +82,8 @@ public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseR
      * @apiNote this method used for get object from Identify number of data base
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
-            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header")})
+            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
+            @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
     @GetMapping
     public ResponseEntity<BaseDTO<R>> findByID(@Valid @RequestParam I id) {
         return new ResponseEntity<>(generalService.findById(id), HttpStatus.OK);
@@ -94,7 +96,8 @@ public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseR
      * findListByPagination Or findByPagination for fetch data
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
-            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header")})
+            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
+            @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
     @GetMapping(value = "/all")
     public ResponseEntity<BaseDTO<List<R>>> findAll() {
         return new ResponseEntity<>(generalService.getAll(), HttpStatus.OK);
@@ -106,7 +109,8 @@ public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseR
      * @return ResponseEntity<BaseDTO < PageDTO < List < R>>>> this methode return PageDTO that is all data in it
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
-            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header")})
+            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
+            @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
     @GetMapping(value = "/all/pagination")
     public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findListByPagination(@Valid @RequestParam Integer page, @RequestParam Integer pageSize) {
         return new ResponseEntity<>(generalService.findListByPagination(page, pageSize), HttpStatus.OK);
@@ -119,7 +123,8 @@ public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseR
      * @return ResponseEntity<BaseDTO < PageDTO < List < R>>>> this methode return PageDTO that is all data in it
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
-            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header")})
+            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
+            @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
     @PostMapping(value = "/all/pagination")
     public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findListByPagination(@Valid @RequestParam Integer page, @RequestParam Integer pageSize, @RequestBody String orders) {
         return new ResponseEntity<>(generalService.findListByPagination(page, pageSize, orders), HttpStatus.OK);
@@ -131,7 +136,8 @@ public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseR
      * @return ResponseEntity<BaseDTO < PageDTO < List < R>>>> this methode return PageDTO that is all data in it
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
-            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header")})
+            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
+            @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
     @GetMapping(value = "/all/pagination/detail")
     public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findByPagination(@Valid @RequestParam Integer page, @RequestParam Integer pageSize) {
         return new ResponseEntity<>(generalService.findByPagination(page, pageSize), HttpStatus.OK);
@@ -144,7 +150,8 @@ public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseR
      * @return ResponseEntity<BaseDTO < PageDTO < List < R>>>> this methode return PageDTO that is all data in it
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
-            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header")})
+            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
+            @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
     @PostMapping(value = "/all/pagination/detail")
     public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findByPagination(@Valid @RequestParam Integer page, @RequestParam Integer pageSize, @RequestBody String orders) {
         return new ResponseEntity<>(generalService.findByPagination(page, pageSize, orders), HttpStatus.OK);
@@ -155,7 +162,8 @@ public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseR
      * @return the boolean of result
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
-            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header")})
+            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
+            @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
     @GetMapping(value = "/exists/ById")
     public ResponseEntity<BaseDTO<Boolean>> existsById(@Valid @RequestParam I id) {
         return new ResponseEntity<>(generalService.existsById(id), HttpStatus.OK);
@@ -166,7 +174,8 @@ public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseR
      * @apiNote this controller used for the count of data
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
-            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header")})
+            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
+            @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
     @GetMapping(value = "/count")
     public ResponseEntity<BaseDTO<Long>> count() {
         return new ResponseEntity<>(generalService.count(), HttpStatus.OK);
