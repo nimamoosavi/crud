@@ -4,6 +4,7 @@ import com.nicico.cost.crud.domain.dto.PageDTO;
 import com.nicico.cost.crud.domain.entity.BaseEntity;
 import com.nicico.cost.crud.domain.view.BaseResVM;
 import com.nicico.cost.crud.service.GeneralService;
+import com.nicico.cost.framework.anotations.Log;
 import com.nicico.cost.framework.domain.dto.BaseDTO;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -28,6 +29,7 @@ import static com.nicico.cost.framework.config.general.GeneralStatic.*;
  * @version 1.0.1
  * @apiNote this class is baseController that you can extended your rest controller and you must create bean of it
  */
+@Log
 public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseResVM<I>, I extends Serializable> {
 
     /**
@@ -46,7 +48,7 @@ public abstract class BaseController<T extends BaseEntity<I>, S, R extends BaseR
             @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
     @PostMapping
     public ResponseEntity<BaseDTO<R>> create(@Valid @RequestBody S s) {
-        return new ResponseEntity<>(generalService.create(s), HttpStatus.CREATED);
+        return new ResponseEntity<>(generalService.save(s), HttpStatus.CREATED);
     }
 
     /**

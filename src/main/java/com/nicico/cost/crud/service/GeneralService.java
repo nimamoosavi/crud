@@ -31,7 +31,6 @@ import static com.nicico.cost.framework.service.GeneralResponse.successCustomRes
  * @implNote @Log {@link com.nicico.cost.framework.anotations.Log} Used For Log But if you need to Used It you must add Audit Library to Your Project
  * @apiNote this class is BaseService that you can extended your Service Class and you must create bean of it
  */
-@Log
 public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseResVM<I>, I extends Serializable> {
 
     /**
@@ -54,7 +53,7 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      * @apiNote this method used for save in Data Base
      */
     @Transactional
-    public BaseDTO<R> create(@NotNull S s) {
+    public BaseDTO<R> save(@NotNull S s) {
         T t = generalMapper.requestToEntity(s);
         T save = generalRepository.save(t);
         return generalMapper.mapEntityToResponse(save);
