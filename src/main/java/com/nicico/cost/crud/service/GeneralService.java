@@ -6,6 +6,7 @@ import com.nicico.cost.crud.domain.entity.BaseEntity;
 import com.nicico.cost.crud.domain.view.BaseResVM;
 import com.nicico.cost.crud.mapper.GeneralMapper;
 import com.nicico.cost.crud.repository.GeneralRepository;
+import com.nicico.cost.framework.anotations.Log;
 import com.nicico.cost.framework.domain.dto.BaseDTO;
 import com.nicico.cost.framework.enums.exception.ExceptionEnum;
 import com.nicico.cost.framework.service.exception.ApplicationException;
@@ -27,8 +28,10 @@ import static com.nicico.cost.framework.service.GeneralResponse.successCustomRes
  * @param <I> is the type of data base Identity class such as Long,String, ...
  * @author nima
  * @version 1.0.1
+ * @implNote @Log {@link com.nicico.cost.framework.anotations.Log} Used For Log But if you need to Used It you must add Audit Library to Your Project
  * @apiNote this class is BaseService that you can extended your Service Class and you must create bean of it
  */
+@Log
 public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseResVM<I>, I extends Serializable> {
 
     /**
