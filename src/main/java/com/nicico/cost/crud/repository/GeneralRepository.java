@@ -11,6 +11,7 @@ import java.util.Optional;
  * @param <I> is the type of data base Identity class such as Long,String, ...
  * @author nima
  * @version 1.0.1
+ * @since 1.0.1
  * @implNote this class used for connect to data Base And you must implement this service in Your Library
  */
 public interface GeneralRepository<T extends BaseEntity<I>, I extends Serializable> {
