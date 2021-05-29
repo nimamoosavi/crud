@@ -1,4 +1,4 @@
-package com.nicico.cost.crud.domain.entity;
+package com.nicico.cost.crud.domain.object;
 
 
 import lombok.AllArgsConstructor;
@@ -16,7 +16,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @MappedSuperclass
-public abstract class BaseEntity<I extends Serializable> implements Serializable {
+public abstract class BaseObject<I extends Serializable> implements Serializable {
     @Transient
     private static final long serialVersionUID = 64882529036694162L;
 

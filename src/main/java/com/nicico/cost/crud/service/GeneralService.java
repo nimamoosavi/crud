@@ -2,11 +2,10 @@ package com.nicico.cost.crud.service;
 
 
 import com.nicico.cost.crud.domain.dto.PageDTO;
-import com.nicico.cost.crud.domain.entity.BaseEntity;
+import com.nicico.cost.crud.domain.object.BaseObject;
 import com.nicico.cost.crud.domain.view.BaseResVM;
 import com.nicico.cost.crud.mapper.GeneralMapper;
 import com.nicico.cost.crud.repository.GeneralRepository;
-import com.nicico.cost.framework.anotations.Log;
 import com.nicico.cost.framework.domain.dto.BaseDTO;
 import com.nicico.cost.framework.enums.exception.ExceptionEnum;
 import com.nicico.cost.framework.service.exception.ApplicationException;
@@ -22,7 +21,7 @@ import java.util.Optional;
 import static com.nicico.cost.framework.service.GeneralResponse.successCustomResponse;
 
 /**
- * @param <T> is the entity class that you must Extended to BaseEntity class {@link com.nicico.cost.crud.domain.entity.BaseEntity}
+ * @param <T> is the Object class that you must Extended to BaseObject class {@link com.nicico.cost.crud.domain.object.BaseObject}
  * @param <S> is request view model that you must create and added
  * @param <R> is the response view model that you can response it from service
  * @param <I> is the type of data base Identity class such as Long,String, ...
@@ -31,7 +30,7 @@ import static com.nicico.cost.framework.service.GeneralResponse.successCustomRes
  * @implNote @Log {@link com.nicico.cost.framework.anotations.Log} Used For Log But if you need to Used It you must add Audit Library to Your Project
  * @apiNote this class is BaseService that you can extended your Service Class and you must create bean of it
  */
-public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseResVM<I>, I extends Serializable> {
+public abstract class GeneralService<T extends BaseObject<I>, S, R extends BaseResVM<I>, I extends Serializable,E extends RuntimeException> {
 
     /**
      * this class used for Repository layer that you must impl of method
@@ -39,9 +38,9 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
     @Autowired(required = false)
     public GeneralRepository<T, I> generalRepository;
     @Autowired
-    public ApplicationException applicationException;
+    public ApplicationException<E> applicationException;
     /**
-     * general Mapper used MapStruct for cast Request view Model And Response View Model And Entity to each Other
+     * general Mapper used MapStruct for cast Request view Model And Response View Model And BaseObject to each Other
      */
     @Autowired(required = false)
     public GeneralMapper<T, S, R, I> generalMapper;
@@ -54,9 +53,9 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      */
     @Transactional
     public BaseDTO<R> save(@NotNull S s) {
-        T t = generalMapper.requestToEntity(s);
+        T t = generalMapper.requestToBaseObject(s);
         T save = generalRepository.save(t);
-        return generalMapper.mapEntityToResponse(save);
+        return generalMapper.mapBaseObjectToResponse(save);
     }
 
     /**
@@ -66,9 +65,9 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      */
     @Transactional
     public BaseDTO<List<R>> saveAll(List<S> sList) {
-        List<T> tList = generalMapper.requestToEntity(sList);
+        List<T> tList = generalMapper.requestToBaseObject(sList);
         List<T> save = generalRepository.saveAll(tList);
-        return generalMapper.mapListEntityToResponse(save);
+        return generalMapper.mapListBaseObjectToResponse(save);
     }
 
     /**
@@ -79,9 +78,9 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      */
     @Transactional
     public BaseDTO<R> update(@NotNull S s, @NotNull I id) {
-        T t = generalMapper.requestToEntity(s);
+        T t = generalMapper.requestToBaseObject(s);
         T tUpdate = generalRepository.update(id, t);
-        return generalMapper.mapEntityToResponse(tUpdate);
+        return generalMapper.mapBaseObjectToResponse(tUpdate);
     }
 
     /**
@@ -105,7 +104,7 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
         T t = generalRepository.findById(id).orElseThrow(
                 () -> applicationException.createApplicationException(ExceptionEnum.NOTFOUND, HttpStatus.NOT_FOUND)
         );
-        return generalMapper.mapEntityToResponse(t);
+        return generalMapper.mapBaseObjectToResponse(t);
     }
 
     /**
@@ -128,7 +127,7 @@ public abstract class GeneralService<T extends BaseEntity<I>, S, R extends BaseR
      */
     public BaseDTO<List<R>> getAll() {
         List<T> tList = generalRepository.findAll();
-        return generalMapper.mapListEntityToResponse(tList);
+        return generalMapper.mapListBaseObjectToResponse(tList);
     }
 
     /**

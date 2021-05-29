@@ -1,20 +1,21 @@
 package com.nicico.cost.crud.repository;
 
-import com.nicico.cost.crud.domain.entity.BaseEntity;
+
+import com.nicico.cost.crud.domain.object.BaseObject;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
 /**
- * @param <T> is the entity class that you must Extended to BaseEntity class {@link com.nicico.cost.crud.domain.entity.BaseEntity}
+ * @param <T> is the entity class that you must Extended to BaseEntity class {@link com.nicico.cost.crud.domain.object.BaseObject}
  * @param <I> is the type of data base Identity class such as Long,String, ...
  * @author nima
  * @version 1.0.1
  * @since 1.0.1
  * @implNote this class used for connect to data Base And you must implement this service in Your Library
  */
-public interface GeneralRepository<T extends BaseEntity<I>, I extends Serializable> {
+public interface GeneralRepository<T extends BaseObject<I>, I extends Serializable> {
     /**
      * @param t the Entity View Model that you must Add To Data Base
      * @return the Optional Of Entity that save it in data base
