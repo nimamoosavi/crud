@@ -2,7 +2,7 @@ package com.nicico.cost.crud.controller;
 
 import com.nicico.cost.framework.domain.dto.PageDTO;
 import com.nicico.cost.crud.domain.object.BaseObject;
-import com.nicico.cost.crud.domain.view.BaseResVM;
+import com.nicico.cost.framework.domain.view.BaseResVM;
 import com.nicico.cost.crud.service.GeneralService;
 import com.nicico.cost.framework.anotations.Log;
 import com.nicico.cost.framework.domain.dto.BaseDTO;

@@ -3,7 +3,7 @@ package com.nicico.cost.crud.service;
 
 import com.nicico.cost.framework.domain.dto.PageDTO;
 import com.nicico.cost.crud.domain.object.BaseObject;
-import com.nicico.cost.crud.domain.view.BaseResVM;
+import com.nicico.cost.framework.domain.view.BaseResVM;
 import com.nicico.cost.crud.mapper.GeneralMapper;
 import com.nicico.cost.crud.repository.GeneralRepository;
 import com.nicico.cost.framework.domain.dto.BaseDTO;

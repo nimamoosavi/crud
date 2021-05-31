@@ -1,6 +1,6 @@
 package com.nicico.cost.crud.mapper;
 
-import com.nicico.cost.crud.domain.view.BaseResVM;
+import com.nicico.cost.framework.domain.view.BaseResVM;
 import com.nicico.cost.framework.domain.dto.BaseDTO;
 
 import java.io.Serializable;
