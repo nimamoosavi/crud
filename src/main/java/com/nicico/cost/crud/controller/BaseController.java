@@ -24,19 +24,18 @@ import static com.nicico.cost.framework.config.general.GeneralStatic.*;
  * @param <S> is request view model that you must create and added
  * @param <R> is the response view model that you can response it from service
  * @param <I> is the type of data base Identity class such as Long,String, ...
- * @param <E> is the Exception Type That You can Throw It
  * @author nima
  * @version 1.0.1
  * @apiNote this class is baseController that you can extended your rest controller and you must create bean of it
  */
 @Log
-public abstract class BaseController<T extends BaseObject<I>, S, R extends BaseResVM<I>, I extends Serializable,E extends RuntimeException> {
+public abstract class BaseController<T extends BaseObject<I>, S, R extends BaseResVM<I>, I extends Serializable> {
 
     /**
      * General service used for all implementation of controller service
      */
     @Autowired
-    GeneralService<T, S, R, I,E> generalService;
+    GeneralService<T, S, R, I> generalService;
 
     /**
      * @param s is the object of request model

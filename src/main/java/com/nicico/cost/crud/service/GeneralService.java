@@ -9,6 +9,7 @@ import com.nicico.cost.crud.repository.GeneralRepository;
 import com.nicico.cost.framework.domain.dto.BaseDTO;
 import com.nicico.cost.framework.enums.exception.ExceptionEnum;
 import com.nicico.cost.framework.service.exception.ApplicationException;
+import com.nicico.cost.framework.service.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +31,7 @@ import static com.nicico.cost.framework.service.GeneralResponse.successCustomRes
  * @implNote @Log {@link com.nicico.cost.framework.anotations.Log} Used For Log But if you need to Used It you must add Audit Library to Your Project
  * @apiNote this class is BaseService that you can extended your Service Class and you must create bean of it
  */
-public abstract class GeneralService<T extends BaseObject<I>, S, R extends BaseResVM<I>, I extends Serializable,E extends RuntimeException> {
+public abstract class GeneralService<T extends BaseObject<I>, S, R extends BaseResVM<I>, I extends Serializable> {
 
     /**
      * this class used for Repository layer that you must impl of method
@@ -38,7 +39,7 @@ public abstract class GeneralService<T extends BaseObject<I>, S, R extends BaseR
     @Autowired(required = false)
     public GeneralRepository<T, I> generalRepository;
     @Autowired
-    public ApplicationException<E> applicationException;
+    public ApplicationException<ServiceException> applicationException;
     /**
      * general Mapper used MapStruct for cast Request view Model And Response View Model And BaseObject to each Other
      */
