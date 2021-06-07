@@ -123,7 +123,7 @@ public abstract class GeneralService<T extends BaseObject<I>, S, R extends BaseR
 
     /**
      * @return BaseDTO<List < R>> the list of response view model Data
-     * @apiNote thi method used for get all data from data base that you must know that the cost of this method is very expensive
+     * @apiNote this method used for get all data from data base that you must know that the cost of this method is very expensive
      * you can choose the method findListByPagination(...) and findByPagination(..) for fetch by pagination
      */
     public BaseDTO<List<R>> getAll() {

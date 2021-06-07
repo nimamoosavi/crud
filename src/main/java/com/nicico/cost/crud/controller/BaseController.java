@@ -147,7 +147,7 @@ public abstract class BaseController<T extends BaseObject<I>, S, R extends BaseR
     /**
      * @param page     is the number of page you need to fetch
      * @param pageSize is the sizable page of data
-     * @param orders   is the list of fields and your direction such as Asc and Desc for Sorting for Sorting
+     * @param orders   is the list of fields and your direction such as Asc and Desc for Sorting
      * @return ResponseEntity<BaseDTO < PageDTO < List < R>>>> this methode return PageDTO that is all data in it
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
