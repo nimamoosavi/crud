@@ -2,7 +2,7 @@ package com.nicico.cost.crud.service;
 
 
 import com.nicico.cost.framework.domain.dto.PageDTO;
-import com.nicico.cost.crud.domain.object.BaseObject;
+import com.nicico.cost.framework.packages.jdbc.base.BaseObject;
 import com.nicico.cost.framework.domain.view.BaseResVM;
 import com.nicico.cost.crud.mapper.GeneralMapper;
 import com.nicico.cost.crud.repository.GeneralRepository;
@@ -22,7 +22,7 @@ import java.util.Optional;
 import static com.nicico.cost.framework.service.GeneralResponse.successCustomResponse;
 
 /**
- * @param <T> is the Object class that you must Extended to BaseObject class {@link com.nicico.cost.crud.domain.object.BaseObject}
+ * @param <T> is the Object class that you must Extended to BaseObject class {@link BaseObject}
  * @param <S> is request view model that you must create and added
  * @param <R> is the response view model that you can response it from service
  * @param <I> is the type of data base Identity class such as Long,String, ...

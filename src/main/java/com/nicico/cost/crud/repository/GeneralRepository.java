@@ -1,14 +1,14 @@
 package com.nicico.cost.crud.repository;
 
 
-import com.nicico.cost.crud.domain.object.BaseObject;
+import com.nicico.cost.framework.packages.jdbc.base.BaseObject;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
 /**
- * @param <T> is the entity class that you must Extended to BaseEntity class {@link com.nicico.cost.crud.domain.object.BaseObject}
+ * @param <T> is the entity class that you must Extended to BaseEntity class {@link BaseObject}
  * @param <I> is the type of data base Identity class such as Long,String, ...
  * @author nima
  * @version 1.0.1
