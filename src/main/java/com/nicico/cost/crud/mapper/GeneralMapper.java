@@ -1,8 +1,6 @@
 package com.nicico.cost.crud.mapper;
 
 import com.nicico.cost.framework.domain.dto.BaseDTO;
-import com.nicico.cost.framework.domain.view.BaseResVM;
-import com.nicico.cost.framework.packages.jdbc.base.BaseObject;
 
 import java.io.Serializable;
 import java.util.List;
@@ -11,17 +9,16 @@ import static com.nicico.cost.framework.service.GeneralResponse.successCustomLis
 import static com.nicico.cost.framework.service.GeneralResponse.successCustomResponse;
 
 /**
- * @param <T> is the object class that you must Extended to BaseObject class {@link BaseObject <Object>}
+ * @param <T> is the object class
  * @param <S> is request view model that you must create and added
  * @param <R> is the response view model that you can response it from service
- * @param <I> is the type of data base Identity class such as Long,String, ...
  * @author nima
  * @version 1.0.1
  * @apiNote this class used for map compile time and used is the protocol that implement by mapStruct library version 1.3.1.Final
  * you must create interface and extended it you must create interface and extended it
  * @apiNote is the protocol that implement by mapStruct library version 1.3.1.Final
  */
-public abstract class GeneralMapper<T, S, R extends BaseResVM<I>, I extends Serializable> {
+public abstract class GeneralMapper<T, S, R> {
 
     /**
      * @param source is the source of request view model

@@ -4,8 +4,6 @@ import com.nicico.cost.crud.service.GeneralService;
 import com.nicico.cost.framework.anotations.Log;
 import com.nicico.cost.framework.domain.dto.BaseDTO;
 import com.nicico.cost.framework.domain.dto.PageDTO;
-import com.nicico.cost.framework.domain.view.BaseResVM;
-import com.nicico.cost.framework.packages.jdbc.base.BaseObject;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +18,6 @@ import java.util.List;
 import static com.nicico.cost.framework.config.general.GeneralStatic.*;
 
 /**
- * @param <T> is the entity class that you must Extended to BaseEntity class {@link BaseObject}
  * @param <S> is request view model that you must create and added
  * @param <R> is the response view model that you can response it from service
  * @param <I> is the type of data base Identity class such as Long,String, ...
@@ -29,7 +26,7 @@ import static com.nicico.cost.framework.config.general.GeneralStatic.*;
  * @apiNote this class is baseController that you can extended your rest controller and you must create bean of it
  */
 @Log
-public abstract class BaseController<T extends BaseObject<I>, S, R extends BaseResVM<I>, I extends Serializable> {
+public abstract class BaseController<T, S, R, I extends Serializable> {
 
     /**
      * General service used for all implementation of controller service
@@ -51,8 +48,7 @@ public abstract class BaseController<T extends BaseObject<I>, S, R extends BaseR
     }
 
     /**
-     * @param s  is the object of request model
-     * @param id is your IncrementalId of DataBase
+     * @param s is the object of request model
      * @return ResponseEntity<BaseDTO < R>> that R the view model you must add to controller
      * @apiNote this method save data to DataBase that you must implemented in repository layer
      */
@@ -60,8 +56,8 @@ public abstract class BaseController<T extends BaseObject<I>, S, R extends BaseR
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
     @PutMapping
-    public ResponseEntity<BaseDTO<R>> update(@Valid @RequestBody S s, @Valid @RequestParam I id) {
-        return new ResponseEntity<>(generalService.update(s, id), HttpStatus.OK);
+    public ResponseEntity<BaseDTO<R>> update(@Valid @RequestBody S s) {
+        return new ResponseEntity<>(generalService.update(s), HttpStatus.OK);
     }
 
     /**

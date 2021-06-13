@@ -5,9 +5,7 @@ import com.nicico.cost.crud.mapper.GeneralMapper;
 import com.nicico.cost.crud.repository.GeneralRepository;
 import com.nicico.cost.framework.domain.dto.BaseDTO;
 import com.nicico.cost.framework.domain.dto.PageDTO;
-import com.nicico.cost.framework.domain.view.BaseResVM;
 import com.nicico.cost.framework.enums.exception.ExceptionEnum;
-import com.nicico.cost.framework.packages.jdbc.base.BaseObject;
 import com.nicico.cost.framework.service.exception.ApplicationException;
 import com.nicico.cost.framework.service.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +20,6 @@ import java.util.Optional;
 import static com.nicico.cost.framework.service.GeneralResponse.successCustomResponse;
 
 /**
- * @param <T> is the Object class that you must Extended to BaseObject class {@link BaseObject}
  * @param <S> is request view model that you must create and added
  * @param <R> is the response view model that you can response it from service
  * @param <I> is the type of data base Identity class such as Long,String, ...
@@ -31,7 +28,7 @@ import static com.nicico.cost.framework.service.GeneralResponse.successCustomRes
  * @implNote @Log {@link com.nicico.cost.framework.anotations.Log} Used For Log But if you need to Used It you must add Audit Library to Your Project
  * @apiNote this class is BaseService that you can extended your Service Class and you must create bean of it
  */
-public abstract class GeneralService<T extends BaseObject<I>, S, R extends BaseResVM<I>, I extends Serializable> {
+public abstract class GeneralService<T, S, R, I extends Serializable> {
 
     /**
      * this class used for Repository layer that you must impl of method
@@ -44,7 +41,7 @@ public abstract class GeneralService<T extends BaseObject<I>, S, R extends BaseR
      * general Mapper used MapStruct for cast Request view Model And Response View Model And BaseObject to each Other
      */
     @Autowired(required = false)
-    public GeneralMapper<T, S, R, I> generalMapper;
+    public GeneralMapper<T, S, R> generalMapper;
 
 
     /**
@@ -73,14 +70,13 @@ public abstract class GeneralService<T extends BaseObject<I>, S, R extends BaseR
 
     /**
      * @param s  is the Request view Model that you can save it in Data Base
-     * @param id is the incrementalId of data base
      * @return the result of view Model
      * @apiNote this method used for update the Data
      */
     @Transactional
-    public BaseDTO<R> update(@NotNull S s, @NotNull I id) {
+    public BaseDTO<R> update(@NotNull S s) {
         T t = generalMapper.requestToBaseObject(s);
-        T tUpdate = generalRepository.update(id, t);
+        T tUpdate = generalRepository.update(t);
         return generalMapper.mapBaseObjectToResponse(tUpdate);
     }
 
