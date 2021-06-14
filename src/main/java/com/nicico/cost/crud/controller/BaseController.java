@@ -1,7 +1,7 @@
 package com.nicico.cost.crud.controller;
 
 import com.nicico.cost.crud.service.GeneralService;
-import com.nicico.cost.framework.anotations.Log;
+import com.nicico.cost.framework.anotations.Unauthorized;
 import com.nicico.cost.framework.domain.dto.BaseDTO;
 import com.nicico.cost.framework.domain.dto.PageDTO;
 import io.swagger.annotations.ApiImplicitParam;
@@ -25,7 +25,6 @@ import static com.nicico.cost.framework.config.general.GeneralStatic.*;
  * @version 1.0.1
  * @apiNote this class is baseController that you can extended your rest controller and you must create bean of it
  */
-@Log
 public abstract class BaseController<T, S, R, I extends Serializable> {
 
     /**
