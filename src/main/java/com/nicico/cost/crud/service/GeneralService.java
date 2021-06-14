@@ -3,6 +3,7 @@ package com.nicico.cost.crud.service;
 
 import com.nicico.cost.crud.mapper.GeneralMapper;
 import com.nicico.cost.crud.repository.GeneralRepository;
+import com.nicico.cost.framework.anotations.Log;
 import com.nicico.cost.framework.domain.dto.BaseDTO;
 import com.nicico.cost.framework.domain.dto.PageDTO;
 import com.nicico.cost.framework.enums.exception.ExceptionEnum;
@@ -28,6 +29,7 @@ import static com.nicico.cost.framework.service.GeneralResponse.successCustomRes
  * @implNote @Log {@link com.nicico.cost.framework.anotations.Log} Used For Log But if you need to Used It you must add Audit Library to Your Project
  * @apiNote this class is BaseService that you can extended your Service Class and you must create bean of it
  */
+@Log
 public abstract class GeneralService<T, S, R, I extends Serializable> {
 
     /**
