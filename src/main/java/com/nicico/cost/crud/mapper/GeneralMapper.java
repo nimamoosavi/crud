@@ -2,7 +2,6 @@ package com.nicico.cost.crud.mapper;
 
 import com.nicico.cost.framework.domain.dto.BaseDTO;
 
-import java.io.Serializable;
 import java.util.List;
 
 import static com.nicico.cost.framework.service.GeneralResponse.successCustomListResponse;
