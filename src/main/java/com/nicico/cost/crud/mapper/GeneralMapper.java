@@ -84,35 +84,35 @@ public abstract class GeneralMapper<T, S, R> {
     public abstract List<R> toResponseModel(List<T> targetList);
 
 
-    public BaseDTO<T> mapRequestToBaseObject(S s) {
+    public final BaseDTO<T> mapRequestToBaseObject(S s) {
         return successCustomResponse(requestToBaseObject(s));
     }
 
-    public BaseDTO<List<T>> mapListRequestToBaseObject(List<S> s) {
+    public final BaseDTO<List<T>> mapListRequestToBaseObject(List<S> s) {
         return successCustomListResponse(requestToBaseObject(s));
     }
 
-    public BaseDTO<S> mapBaseObjectToRequest(T t) {
+    public final BaseDTO<S> mapBaseObjectToRequest(T t) {
         return successCustomResponse(toRequestModel(t));
     }
 
-    public BaseDTO<List<S>> mapListBaseObjectToRequest(List<T> t) {
+    public final BaseDTO<List<S>> mapListBaseObjectToRequest(List<T> t) {
         return successCustomResponse(toRequestModels(t));
     }
 
-    public BaseDTO<R> mapBaseObjectToResponse(T t) {
+    public final BaseDTO<R> mapBaseObjectToResponse(T t) {
         return successCustomResponse(toResponseModel(t));
     }
 
-    public BaseDTO<List<R>> mapListBaseObjectToResponse(List<T> t) {
+    public final BaseDTO<List<R>> mapListBaseObjectToResponse(List<T> t) {
         return successCustomListResponse(toResponseModel(t));
     }
 
-    public BaseDTO<T> mapResponseToBaseObject(R r) {
+    public final BaseDTO<T> mapResponseToBaseObject(R r) {
         return successCustomResponse(responseToBaseObject(r));
     }
 
-    public BaseDTO<List<T>> mapListResponseToBaseObject(List<R> r) {
+    public final BaseDTO<List<T>> mapListResponseToBaseObject(List<R> r) {
         return successCustomListResponse(responseToBaseObject(r));
     }
 
