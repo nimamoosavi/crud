@@ -3,6 +3,7 @@ package com.nicico.cost.crud.controller;
 import com.nicico.cost.crud.service.GeneralService;
 import com.nicico.cost.framework.domain.dto.BaseDTO;
 import com.nicico.cost.framework.domain.dto.PageDTO;
+import com.nicico.cost.framework.packages.crud.view.Sort;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,15 +115,15 @@ public abstract class BaseController<T, S, R, I extends Serializable> {
     /**
      * @param page     is the number of page you need to fetch
      * @param pageSize is the sizable page of data
-     * @param orders   is the list of fields and your direction such as Asc and Desc for Sorting
+     * @param sorts   is the list of fields and your direction such as Asc and Desc for Sorting
      * @return ResponseEntity<BaseDTO < PageDTO < List < R>>>> this methode return PageDTO that is all data in it
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
     @PostMapping(value = "/all/pagination/sort")
-    public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findAll(@Valid @RequestParam Integer page, @RequestParam Integer pageSize, @RequestBody String orders) {
-        return new ResponseEntity<>(generalService.findAll(page, pageSize, orders), HttpStatus.OK);
+    public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findAll(@Valid @RequestParam Integer page, @RequestParam Integer pageSize, @RequestBody List<Sort> sorts) {
+        return new ResponseEntity<>(generalService.findAll(page, pageSize, sorts), HttpStatus.OK);
     }
 
     /**
@@ -141,15 +142,15 @@ public abstract class BaseController<T, S, R, I extends Serializable> {
     /**
      * @param page     is the number of page you need to fetch
      * @param pageSize is the sizable page of data
-     * @param orders   is the list of fields and your direction such as Asc and Desc for Sorting
+     * @param sorts   is the list of fields and your direction such as Asc and Desc for Sorting
      * @return ResponseEntity<BaseDTO < PageDTO < List < R>>>> this methode return PageDTO that is all data in it
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
     @PostMapping(value = "/all/pagination-total/sort")
-    public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findAllWithTotal(@Valid @RequestParam Integer page, @RequestParam Integer pageSize, @RequestBody String orders) {
-        return new ResponseEntity<>(generalService.findAllWithTotal(page, pageSize, orders), HttpStatus.OK);
+    public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findAllWithTotal(@Valid @RequestParam Integer page, @RequestParam Integer pageSize, @RequestBody List<Sort> sorts) {
+        return new ResponseEntity<>(generalService.findAllWithTotal(page, pageSize, sorts), HttpStatus.OK);
     }
 
     /**

@@ -7,6 +7,7 @@ import com.nicico.cost.framework.anotations.Log;
 import com.nicico.cost.framework.domain.dto.BaseDTO;
 import com.nicico.cost.framework.domain.dto.PageDTO;
 import com.nicico.cost.framework.enums.exception.ExceptionEnum;
+import com.nicico.cost.framework.packages.crud.view.Sort;
 import com.nicico.cost.framework.service.exception.ApplicationException;
 import com.nicico.cost.framework.service.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -147,7 +148,7 @@ public abstract class GeneralService<T, S, R, I extends Serializable> {
      * @param orders   orders is the list of fields and your direction such as Asc and Desc
      * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
      */
-    public BaseDTO<PageDTO<List<R>>> findAll(int page, int pageSize, String orders) {
+    public BaseDTO<PageDTO<List<R>>> findAll(int page, int pageSize, List<Sort> orders) {
         List<T> tList = generalRepository.findAll(page, pageSize, orders);
         List<R> rs = generalMapper.toResponseModel(tList);
         PageDTO<List<R>> pagination = PageDTO.<List<R>>builder().pageSize(pageSize).totalElement(null).object(rs).build();
@@ -176,7 +177,7 @@ public abstract class GeneralService<T, S, R, I extends Serializable> {
      * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
      * @apiNote this method call count method and return the count of data
      */
-    public BaseDTO<PageDTO<List<R>>> findAllWithTotal(int page, int pageSize, String orders) {
+    public BaseDTO<PageDTO<List<R>>> findAllWithTotal(int page, int pageSize, List<Sort> orders) {
         Long count = count().getData();
         List<T> tList = generalRepository.findAll(page, pageSize, orders);
         List<R> rs = generalMapper.toResponseModel(tList);

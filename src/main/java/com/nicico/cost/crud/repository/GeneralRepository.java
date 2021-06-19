@@ -2,6 +2,8 @@ package com.nicico.cost.crud.repository;
 
 
 
+import com.nicico.cost.framework.packages.crud.view.Sort;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
@@ -62,7 +64,7 @@ public interface GeneralRepository<T, I extends Serializable> {
      * @param orders   is the list of fields and your direction such as Asc and Desc for Sorting
      * @return the Optional List Of Entity from Response Of Data Base
      */
-    List<T> findAll(int page, int pageSize, String orders);
+    List<T> findAll(int page, int pageSize, List<Sort> orders);
 
     /**
      * @return the Number Of data
