@@ -124,7 +124,7 @@ public abstract class GeneralService<T, S, R, I extends Serializable> {
      * @apiNote this method used for get all data from data base that you must know that the cost of this method is very expensive
      * you can choose the method findListByPagination(...) and findByPagination(..) for fetch by pagination
      */
-    public BaseDTO<List<R>> getAll() {
+    public BaseDTO<List<R>> findAll() {
         List<T> tList = generalRepository.findAll();
         return generalMapper.mapListBaseObjectToResponse(tList);
     }
@@ -134,7 +134,7 @@ public abstract class GeneralService<T, S, R, I extends Serializable> {
      * @param pageSize is the sizable page of data
      * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
      */
-    public BaseDTO<PageDTO<List<R>>> findListByPagination(int page, int pageSize) {
+    public BaseDTO<PageDTO<List<R>>> findAll(int page, int pageSize) {
         List<T> tList = generalRepository.findAll(page, pageSize);
         List<R> rs = generalMapper.toResponseModel(tList);
         PageDTO<List<R>> pagination = PageDTO.<List<R>>builder().pageSize(pageSize).totalElement(null).object(rs).build();
@@ -147,7 +147,7 @@ public abstract class GeneralService<T, S, R, I extends Serializable> {
      * @param orders   orders is the list of fields and your direction such as Asc and Desc
      * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
      */
-    public BaseDTO<PageDTO<List<R>>> findListByPagination(int page, int pageSize, String orders) {
+    public BaseDTO<PageDTO<List<R>>> findAll(int page, int pageSize, String orders) {
         List<T> tList = generalRepository.findAll(page, pageSize, orders);
         List<R> rs = generalMapper.toResponseModel(tList);
         PageDTO<List<R>> pagination = PageDTO.<List<R>>builder().pageSize(pageSize).totalElement(null).object(rs).build();
@@ -161,7 +161,7 @@ public abstract class GeneralService<T, S, R, I extends Serializable> {
      * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
      * @apiNote this method call count method and return the count of data
      */
-    public BaseDTO<PageDTO<List<R>>> findByPagination(int page, int pageSize) {
+    public BaseDTO<PageDTO<List<R>>> findAllWithTotal(int page, int pageSize) {
         Long count = count().getData();
         List<T> tList = generalRepository.findAll(page, pageSize);
         List<R> rs = generalMapper.toResponseModel(tList);
@@ -176,7 +176,7 @@ public abstract class GeneralService<T, S, R, I extends Serializable> {
      * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
      * @apiNote this method call count method and return the count of data
      */
-    public BaseDTO<PageDTO<List<R>>> findByPagination(int page, int pageSize, String orders) {
+    public BaseDTO<PageDTO<List<R>>> findAllWithTotal(int page, int pageSize, String orders) {
         Long count = count().getData();
         List<T> tList = generalRepository.findAll(page, pageSize, orders);
         List<R> rs = generalMapper.toResponseModel(tList);
