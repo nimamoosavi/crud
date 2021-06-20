@@ -25,13 +25,13 @@ import static com.nicico.cost.framework.config.general.GeneralStatic.*;
  * @version 1.0.1
  * @apiNote this class is baseController that you can extended your rest controller and you must create bean of it
  */
-public abstract class BaseController<T, S, R, I extends Serializable> {
+public abstract class BaseController<S, R, I extends Serializable> {
 
     /**
      * General service used for all implementation of controller service
      */
     @Autowired
-    GeneralService<T, S, R, I> generalService;
+    GeneralService<S, R, I> generalService;
 
     /**
      * @param s is the object of request model
