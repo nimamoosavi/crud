@@ -48,11 +48,6 @@ public abstract class GeneralServiceImpl<T, S, R, I extends Serializable> implem
     public GeneralMapper<T, S, R> generalMapper;
 
 
-    /**
-     * @param s is the Request view Model that you can save it in Data Base
-     * @return the Response View Model that you must set in base class
-     * @apiNote this method used for save in Data Base
-     */
     @Transactional
     public BaseDTO<R> save(@NotNull S s) {
         T t = generalMapper.requestToBaseObject(s);
