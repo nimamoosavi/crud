@@ -60,6 +60,13 @@ public interface GeneralRepository<T, I extends Serializable> {
     List<T> findAll(Criteria criteria);
 
     /**
+     * @param criteria is the criteria for find in where Clause
+     * @return the List Of Entities
+     * @apiNote this methode uses for Fetch All Data
+     */
+    List<T> findAll(Criteria criteria,List<Sort> sorts);
+
+    /**
      * @param page     the page number that you must fetch it
      * @param pageSize the page Size of that you need to split Data
      * @return the Optional List Of Entity from Response Of Data Base
