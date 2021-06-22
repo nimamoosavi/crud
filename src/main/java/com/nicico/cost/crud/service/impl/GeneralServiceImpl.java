@@ -8,6 +8,7 @@ import com.nicico.cost.framework.anotations.Log;
 import com.nicico.cost.framework.domain.dto.BaseDTO;
 import com.nicico.cost.framework.domain.dto.PageDTO;
 import com.nicico.cost.framework.enums.exception.ExceptionEnum;
+import com.nicico.cost.framework.packages.crud.view.Criteria;
 import com.nicico.cost.framework.packages.crud.view.Sort;
 import com.nicico.cost.framework.service.exception.ApplicationException;
 import com.nicico.cost.framework.service.exception.ServiceException;
@@ -190,5 +191,40 @@ public abstract class GeneralServiceImpl<T, S, R, I extends Serializable> implem
         return successCustomResponse(count);
     }
 
+    /**
+     * @param criteria is the where clause of query
+     * @return BaseDTO<List < R>> the list of response view model Data
+     * @apiNote this method used for get all data from data base that you must know that the cost of this method is very expensive
+     * you can choose the method findListByPagination(...) and findByPagination(..) for fetch by pagination
+     */
+    @Override
+    public BaseDTO<List<R>> findAll(Criteria criteria) {
+        List<T> all = generalRepository.findAll(criteria);
+        return generalMapper.mapListBaseObjectToResponse(all);
+    }
 
+    /**
+     * @param page     is the number of page you need to fetch
+     * @param pageSize is the sizable page of data
+     * @param criteria is the where clause of query
+     * @return BaseDTO<List < R>> the list of response view model Data
+     */
+    @Override
+    public BaseDTO<PageDTO<List<R>>> findAll(int page, int pageSize, Criteria criteria) {
+        Long count = count().getData();
+        List<T> all = generalRepository.findAll(page, pageSize, criteria);
+        List<R> rs = generalMapper.toResponseModel(all);
+        PageDTO<List<R>> pagination = PageDTO.<List<R>>builder().pageSize(pageSize).totalElement(count).object(rs).build();
+        return successCustomResponse(pagination);
+    }
+
+    /**
+     * @return the number of data
+     * @apiNote this method used for count of data objects
+     */
+    @Override
+    public BaseDTO<Long> count(Criteria criteria) {
+        long count = generalRepository.count(criteria);
+        return successCustomResponse(count);
+    }
 }

@@ -2,6 +2,7 @@ package com.nicico.cost.crud.service;
 
 import com.nicico.cost.framework.domain.dto.BaseDTO;
 import com.nicico.cost.framework.domain.dto.PageDTO;
+import com.nicico.cost.framework.packages.crud.view.Criteria;
 import com.nicico.cost.framework.packages.crud.view.Sort;
 
 import javax.validation.constraints.NotNull;
@@ -68,11 +69,25 @@ public interface GeneralService<S, R, I extends Serializable> {
     BaseDTO<List<R>> findAll();
 
     /**
+     * @return BaseDTO<List < R>> the list of response view model Data
+     * @apiNote this method used for get all data from data base that you must know that the cost of this method is very expensive
+     * you can choose the method findListByPagination(...) and findByPagination(..) for fetch by pagination
+     */
+    BaseDTO<List<R>> findAll(Criteria criteria);
+
+    /**
      * @param page     is the number of page you need to fetch
      * @param pageSize is the sizable page of data
      * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
      */
     BaseDTO<PageDTO<List<R>>> findAll(int page, int pageSize);
+
+    /**
+     * @param page     is the number of page you need to fetch
+     * @param pageSize is the sizable page of data
+     * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
+     */
+    BaseDTO<PageDTO<List<R>>> findAll(int page, int pageSize, Criteria criteria);
 
     /**
      * @param page     is the number of page you need to fetch
@@ -104,4 +119,10 @@ public interface GeneralService<S, R, I extends Serializable> {
      * @apiNote this method used for count of data objects
      */
     BaseDTO<Long> count();
+
+    /**
+     * @return the number of data
+     * @apiNote this method used for count of data objects
+     */
+    BaseDTO<Long> count(Criteria criteria);
 }
