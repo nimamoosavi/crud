@@ -97,22 +97,6 @@ public interface GeneralService<S, R, I extends Serializable> {
      */
     BaseDTO<PageDTO<List<R>>> findAll(int page, int pageSize, List<Sort> orders);
 
-    /**
-     * @param page     is the number of page you need to fetch
-     * @param pageSize is the sizable page of data
-     * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
-     * @apiNote this method call count method and return the count of data
-     */
-    BaseDTO<PageDTO<List<R>>> findAllWithTotal(int page, int pageSize);
-
-    /**
-     * @param page     is the number of page you need to fetch
-     * @param pageSize is the sizable page of data
-     * @param orders   orders is the list of fields and your direction such as Asc and Desc
-     * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
-     * @apiNote this method call count method and return the count of data
-     */
-    BaseDTO<PageDTO<List<R>>> findAllWithTotal(int page, int pageSize, List<Sort> orders);
 
     /**
      * @return the number of data

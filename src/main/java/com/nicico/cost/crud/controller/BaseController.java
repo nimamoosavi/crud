@@ -127,33 +127,6 @@ public abstract class BaseController<S, R, I extends Serializable> {
     }
 
     /**
-     * @param page     is the number of page you need to fetch
-     * @param pageSize is the sizable page of data
-     * @return ResponseEntity<BaseDTO < PageDTO < List < R>>>> this methode return PageDTO that is all data in it
-     */
-    @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
-            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
-            @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
-    @GetMapping(value = "/all/pagination-total")
-    public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findAllWithTotal(@Valid @RequestParam Integer page, @RequestParam Integer pageSize) {
-        return new ResponseEntity<>(generalService.findAllWithTotal(page, pageSize), HttpStatus.OK);
-    }
-
-    /**
-     * @param page     is the number of page you need to fetch
-     * @param pageSize is the sizable page of data
-     * @param sorts   is the list of fields and your direction such as Asc and Desc for Sorting
-     * @return ResponseEntity<BaseDTO < PageDTO < List < R>>>> this methode return PageDTO that is all data in it
-     */
-    @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
-            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
-            @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
-    @PostMapping(value = "/all/pagination-total/sort")
-    public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findAllWithTotal(@Valid @RequestParam Integer page, @RequestParam Integer pageSize, @RequestBody List<Sort> sorts) {
-        return new ResponseEntity<>(generalService.findAllWithTotal(page, pageSize, sorts), HttpStatus.OK);
-    }
-
-    /**
      * @param id is your IncrementalId of DataBase
      * @return the boolean of result
      */

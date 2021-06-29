@@ -133,10 +133,9 @@ public abstract class GeneralServiceImpl<T, S, R, I extends Serializable> implem
      * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
      */
     public BaseDTO<PageDTO<List<R>>> findAll(int page, int pageSize) {
-        List<T> tList = generalRepository.findAll(page, pageSize);
-        List<R> rs = generalMapper.toResponseModel(tList);
-        PageDTO<List<R>> pagination = PageDTO.<List<R>>builder().pageSize(pageSize).totalElement(null).object(rs).build();
-        return successCustomResponse(pagination);
+        PageDTO<List<T>> tList = generalRepository.findAll(page, pageSize);
+        PageDTO<List<R>> listPageDTO = generalMapper.mapToPageDTOResponse(tList);
+        return successCustomResponse(listPageDTO);
     }
 
     /**
@@ -146,40 +145,9 @@ public abstract class GeneralServiceImpl<T, S, R, I extends Serializable> implem
      * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
      */
     public BaseDTO<PageDTO<List<R>>> findAll(int page, int pageSize, List<Sort> orders) {
-        List<T> tList = generalRepository.findAll(page, pageSize, orders);
-        List<R> rs = generalMapper.toResponseModel(tList);
-        PageDTO<List<R>> pagination = PageDTO.<List<R>>builder().pageSize(pageSize).totalElement(null).object(rs).build();
-        return successCustomResponse(pagination);
-    }
-
-
-    /**
-     * @param page     is the number of page you need to fetch
-     * @param pageSize is the sizable page of data
-     * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
-     * @apiNote this method call count method and return the count of data
-     */
-    public BaseDTO<PageDTO<List<R>>> findAllWithTotal(int page, int pageSize) {
-        Long count = count().getData();
-        List<T> tList = generalRepository.findAll(page, pageSize);
-        List<R> rs = generalMapper.toResponseModel(tList);
-        PageDTO<List<R>> pagination = PageDTO.<List<R>>builder().pageSize(pageSize).totalElement(count).object(rs).build();
-        return successCustomResponse(pagination);
-    }
-
-    /**
-     * @param page     is the number of page you need to fetch
-     * @param pageSize is the sizable page of data
-     * @param orders   orders is the list of fields and your direction such as Asc and Desc
-     * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
-     * @apiNote this method call count method and return the count of data
-     */
-    public BaseDTO<PageDTO<List<R>>> findAllWithTotal(int page, int pageSize, List<Sort> orders) {
-        Long count = count().getData();
-        List<T> tList = generalRepository.findAll(page, pageSize, orders);
-        List<R> rs = generalMapper.toResponseModel(tList);
-        PageDTO<List<R>> pagination = PageDTO.<List<R>>builder().pageSize(pageSize).totalElement(count).object(rs).build();
-        return successCustomResponse(pagination);
+        PageDTO<List<T>> tList = generalRepository.findAll(page, pageSize, orders);
+        PageDTO<List<R>> listPageDTO = generalMapper.mapToPageDTOResponse(tList);
+        return successCustomResponse(listPageDTO);
     }
 
     /**
@@ -211,11 +179,9 @@ public abstract class GeneralServiceImpl<T, S, R, I extends Serializable> implem
      */
     @Override
     public BaseDTO<PageDTO<List<R>>> findAll(int page, int pageSize, Criteria criteria) {
-        Long count = count().getData();
-        List<T> all = generalRepository.findAll(page, pageSize, criteria);
-        List<R> rs = generalMapper.toResponseModel(all);
-        PageDTO<List<R>> pagination = PageDTO.<List<R>>builder().pageSize(pageSize).totalElement(count).object(rs).build();
-        return successCustomResponse(pagination);
+        PageDTO<List<T>> all = generalRepository.findAll(page, pageSize, criteria);
+        PageDTO<List<R>> listPageDTO = generalMapper.mapToPageDTOResponse(all);
+        return successCustomResponse(listPageDTO);
     }
 
     /**

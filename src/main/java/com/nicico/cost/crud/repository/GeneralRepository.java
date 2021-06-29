@@ -2,6 +2,7 @@ package com.nicico.cost.crud.repository;
 
 
 
+import com.nicico.cost.framework.domain.dto.PageDTO;
 import com.nicico.cost.framework.packages.crud.view.Criteria;
 import com.nicico.cost.framework.packages.crud.view.Sort;
 
@@ -65,7 +66,7 @@ public interface GeneralRepository<T, I extends Serializable> {
      * @param pageSize the page Size of that you need to split Data
      * @return the Optional List Of Entity from Response Of Data Base
      */
-    List<T> findAll(int page, int pageSize);
+    PageDTO<List<T>> findAll(int page, int pageSize);
 
     /**
      * @param page     the page number that you must fetch it
@@ -73,7 +74,7 @@ public interface GeneralRepository<T, I extends Serializable> {
      * @param pageSize the page Size of that you need to split Data
      * @return the Optional List Of Entity from Response Of Data Base
      */
-    List<T> findAll(int page, int pageSize, Criteria criteria);
+    PageDTO<List<T>> findAll(int page, int pageSize, Criteria criteria);
 
     /**
      * @param page     the page number that you must fetch it
@@ -81,7 +82,7 @@ public interface GeneralRepository<T, I extends Serializable> {
      * @param orders   is the list of fields and your direction such as Asc and Desc for Sorting
      * @return the Optional List Of Entity from Response Of Data Base
      */
-    List<T> findAll(int page, int pageSize, List<Sort> orders);
+    PageDTO<List<T>> findAll(int page, int pageSize, List<Sort> orders);
 
 
     /**

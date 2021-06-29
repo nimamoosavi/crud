@@ -1,6 +1,7 @@
 package com.nicico.cost.crud.mapper;
 
 import com.nicico.cost.framework.domain.dto.BaseDTO;
+import com.nicico.cost.framework.domain.dto.PageDTO;
 
 import java.util.List;
 
@@ -81,6 +82,14 @@ public abstract class GeneralMapper<T, S, R> {
      * @apiNote used for cast to Iterable of BaseObject to List Of Response
      */
     public abstract List<R> toResponseModel(List<T> targetList);
+
+    public final PageDTO<List<R>> mapToPageDTOResponse(PageDTO<List<T>> pageDTO) {
+        List<R> rList = mapListBaseObjectToResponse(pageDTO.getObject()).getData();
+        return PageDTO.<List<R>>builder().object(rList)
+                .pageSize(pageDTO.getPageSize())
+                .totalPages(pageDTO.getTotalPages())
+                .totalElement(pageDTO.getTotalElement()).build();
+    }
 
 
     public final BaseDTO<T> mapRequestToBaseObject(S s) {
