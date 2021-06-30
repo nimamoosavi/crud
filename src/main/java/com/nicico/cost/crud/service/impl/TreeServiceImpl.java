@@ -1,0 +1,82 @@
+package com.nicico.cost.crud.service.impl;
+
+
+import com.nicico.cost.crud.repository.TreeRepository;
+import com.nicico.cost.framework.anotations.Log;
+import com.nicico.cost.framework.domain.dto.BaseDTO;
+import com.nicico.cost.framework.domain.dto.PageDTO;
+import com.nicico.cost.framework.packages.crud.view.Sort;
+import com.nicico.cost.crud.domain.view.TreeReqVM;
+import com.nicico.cost.crud.domain.view.TreeResVM;
+
+import com.nicico.cost.crud.service.TreeService;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.io.Serializable;
+import java.util.List;
+
+import static com.nicico.cost.framework.service.GeneralResponse.successCustomResponse;
+
+/**
+ * @param <S> is request view model that you must create and added
+ * @param <R> is the response view model that you can response it from service
+ * @param <I> is the type of data base Identity class such as Long,String, ...
+ * @author nima
+ * @version 1.0.1
+ * @implNote @Log {@link com.nicico.cost.framework.anotations.Log} Used For Log But if you need to Used It you must add Audit Library to Your Project
+ * @apiNote this class is BaseService that you can extended your Service Class and you must create bean of it
+ */
+@Log
+public abstract class TreeServiceImpl<T,S extends TreeReqVM<I>, R extends TreeResVM<I>, I extends Serializable> extends GeneralServiceImpl<T,S,R,I> implements TreeService<S,R,I> {
+
+    /**
+     * this class used for Repository layer that you must impl of method
+     */
+    @Autowired(required = false)
+    public TreeRepository<T, I> treeRepository;
+
+
+    public BaseDTO<List<R>> findAll(I pid) {
+        List<T> all = treeRepository.findAll(pid);
+        return generalMapper.mapListBaseObjectToResponse(all);
+    }
+
+
+    public BaseDTO<PageDTO<List<R>>> findAll(int page, int pageSize, I pid) {
+        PageDTO<List<T>> all = treeRepository.findAll(page, pageSize, pid);
+        PageDTO<List<R>> listPageDTO = generalMapper.mapToPageDTOResponse(all);
+        return successCustomResponse(listPageDTO);
+    }
+
+    public BaseDTO<PageDTO<List<R>>> findAll(int page, int pageSize, List<Sort> orders, I pid) {
+        PageDTO<List<T>> all = treeRepository.findAll(page, pageSize, orders, pid);
+        PageDTO<List<R>> listPageDTO = generalMapper.mapToPageDTOResponse(all);
+        return successCustomResponse(listPageDTO);
+    }
+
+    @Override
+    public BaseDTO<List<R>> findAllRootParent() {
+        List<T> all = treeRepository.findAllParent();
+        return generalMapper.mapListBaseObjectToResponse(all);
+    }
+
+    @Override
+    public BaseDTO<List<R>> findAllRootParent(List<Sort> orders) {
+        List<T> all = treeRepository.findAllParent(orders);
+        return generalMapper.mapListBaseObjectToResponse(all);
+    }
+
+    @Override
+    public BaseDTO<PageDTO<List<R>>> findAllRootParent(int page, int pageSize, List<Sort> orders) {
+        PageDTO<List<T>> parent = treeRepository.findAllParent(page, pageSize, orders);
+        PageDTO<List<R>> listPageDTO = generalMapper.mapToPageDTOResponse(parent);
+        return successCustomResponse(listPageDTO);
+    }
+
+    @Override
+    public BaseDTO<PageDTO<List<R>>> findAllRootParent(int page, int pageSize) {
+        PageDTO<List<T>> parent = treeRepository.findAllParent(page, pageSize);
+        PageDTO<List<R>> listPageDTO = generalMapper.mapToPageDTOResponse(parent);
+        return successCustomResponse(listPageDTO);
+    }
+}
