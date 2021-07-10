@@ -113,6 +113,18 @@ public abstract class BaseController<S, R, I extends Serializable> {
     }
 
     /**
+     * @param query is the object for query string
+     * @return ResponseEntity<BaseDTO < PageDTO < List < R>>>> this methode return PageDTO that is all data in it
+     */
+    @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
+            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
+            @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
+    @PostMapping(value = "/all/query")
+    public ResponseEntity<BaseDTO<List<R>>> findAllByQuery(@RequestBody Query query) {
+        return new ResponseEntity<>(generalService.findAll(query), HttpStatus.OK);
+    }
+
+    /**
      * @param page     is the number of page you need to fetch
      * @param pageSize is the sizable page of data
      * @param query    is the object for query string
@@ -122,7 +134,7 @@ public abstract class BaseController<S, R, I extends Serializable> {
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
     @PostMapping(value = "/all/pagination/query")
-    public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findAllByQuery(@Valid @RequestParam Integer page, @RequestParam Integer pageSize, @RequestBody Query query) {
+    public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findAllByPaginationAndQuery(@Valid @RequestParam Integer page, @RequestParam Integer pageSize, @RequestBody Query query) {
         return new ResponseEntity<>(generalService.findAll(page, pageSize, query), HttpStatus.OK);
     }
 
