@@ -3,7 +3,7 @@ package com.nicico.cost.crud.controller;
 import com.nicico.cost.crud.service.GeneralService;
 import com.nicico.cost.framework.domain.dto.BaseDTO;
 import com.nicico.cost.framework.domain.dto.PageDTO;
-import com.nicico.cost.framework.packages.crud.view.Sort;
+import com.nicico.cost.framework.packages.crud.view.Query;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -115,15 +115,15 @@ public abstract class BaseController<S, R, I extends Serializable> {
     /**
      * @param page     is the number of page you need to fetch
      * @param pageSize is the sizable page of data
-     * @param sorts   is the list of fields and your direction such as Asc and Desc for Sorting
+     * @param query    is the object for query string
      * @return ResponseEntity<BaseDTO < PageDTO < List < R>>>> this methode return PageDTO that is all data in it
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
-    @PostMapping(value = "/all/pagination/sort")
-    public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findAll(@Valid @RequestParam Integer page, @RequestParam Integer pageSize, @RequestBody List<Sort> sorts) {
-        return new ResponseEntity<>(generalService.findAll(page, pageSize, sorts), HttpStatus.OK);
+    @PostMapping(value = "/all/pagination/query")
+    public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findAllByQuery(@Valid @RequestParam Integer page, @RequestParam Integer pageSize, @RequestBody Query query) {
+        return new ResponseEntity<>(generalService.findAll(page, pageSize, query), HttpStatus.OK);
     }
 
     /**
@@ -148,6 +148,18 @@ public abstract class BaseController<S, R, I extends Serializable> {
     @GetMapping(value = "/count")
     public ResponseEntity<BaseDTO<Long>> count() {
         return new ResponseEntity<>(generalService.count(), HttpStatus.OK);
+    }
+
+    /**
+     * @return the number of objects
+     * @apiNote this controller used for the count of data
+     */
+    @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
+            @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
+            @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
+    @PostMapping(value = "/count/query")
+    public ResponseEntity<BaseDTO<Long>> countByQuery(@RequestBody Query query) {
+        return new ResponseEntity<>(generalService.count(query), HttpStatus.OK);
     }
 
 }

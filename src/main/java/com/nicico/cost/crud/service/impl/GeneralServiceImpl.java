@@ -9,6 +9,7 @@ import com.nicico.cost.framework.domain.dto.BaseDTO;
 import com.nicico.cost.framework.domain.dto.PageDTO;
 import com.nicico.cost.framework.enums.exception.ExceptionEnum;
 import com.nicico.cost.framework.packages.crud.view.Criteria;
+import com.nicico.cost.framework.packages.crud.view.Query;
 import com.nicico.cost.framework.packages.crud.view.Sort;
 import com.nicico.cost.framework.service.exception.ApplicationException;
 import com.nicico.cost.framework.service.exception.ServiceException;
@@ -138,17 +139,6 @@ public abstract class GeneralServiceImpl<T, S, R, I extends Serializable> implem
         return successCustomResponse(listPageDTO);
     }
 
-    /**
-     * @param page     is the number of page you need to fetch
-     * @param pageSize is the sizable page of data
-     * @param orders   orders is the list of fields and your direction such as Asc and Desc
-     * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
-     */
-    public BaseDTO<PageDTO<List<R>>> findAll(int page, int pageSize, List<Sort> orders) {
-        PageDTO<List<T>> tList = generalRepository.findAll(page, pageSize, orders);
-        PageDTO<List<R>> listPageDTO = generalMapper.mapToPageDTOResponse(tList);
-        return successCustomResponse(listPageDTO);
-    }
 
     /**
      * @return the number of data
@@ -160,26 +150,26 @@ public abstract class GeneralServiceImpl<T, S, R, I extends Serializable> implem
     }
 
     /**
-     * @param criteria is the where clause of query
+     * @param query is the where clause of query
      * @return BaseDTO<List < R>> the list of response view model Data
      * @apiNote this method used for get all data from data base that you must know that the cost of this method is very expensive
      * you can choose the method findListByPagination(...) and findByPagination(..) for fetch by pagination
      */
     @Override
-    public BaseDTO<List<R>> findAll(Criteria criteria) {
-        List<T> all = generalRepository.findAll(criteria);
+    public BaseDTO<List<R>> findAll(Query query) {
+        List<T> all = generalRepository.findAll(query);
         return generalMapper.mapListBaseObjectToResponse(all);
     }
 
     /**
      * @param page     is the number of page you need to fetch
      * @param pageSize is the sizable page of data
-     * @param criteria is the where clause of query
+     * @param query is the where clause of query
      * @return BaseDTO<List < R>> the list of response view model Data
      */
     @Override
-    public BaseDTO<PageDTO<List<R>>> findAll(int page, int pageSize, Criteria criteria) {
-        PageDTO<List<T>> all = generalRepository.findAll(page, pageSize, criteria);
+    public BaseDTO<PageDTO<List<R>>> findAll(int page, int pageSize, Query query) {
+        PageDTO<List<T>> all = generalRepository.findAll(page, pageSize, query);
         PageDTO<List<R>> listPageDTO = generalMapper.mapToPageDTOResponse(all);
         return successCustomResponse(listPageDTO);
     }
@@ -189,8 +179,8 @@ public abstract class GeneralServiceImpl<T, S, R, I extends Serializable> implem
      * @apiNote this method used for count of data objects
      */
     @Override
-    public BaseDTO<Long> count(Criteria criteria) {
-        long count = generalRepository.count(criteria);
+    public BaseDTO<Long> count(Query query) {
+        long count = generalRepository.count(query);
         return successCustomResponse(count);
     }
 }

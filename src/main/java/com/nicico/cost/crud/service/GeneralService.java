@@ -3,7 +3,7 @@ package com.nicico.cost.crud.service;
 import com.nicico.cost.framework.domain.dto.BaseDTO;
 import com.nicico.cost.framework.domain.dto.PageDTO;
 import com.nicico.cost.framework.packages.crud.view.Criteria;
-import com.nicico.cost.framework.packages.crud.view.Sort;
+import com.nicico.cost.framework.packages.crud.view.Query;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -73,7 +73,7 @@ public interface GeneralService<S, R, I extends Serializable> {
      * @apiNote this method used for get all data from data base that you must know that the cost of this method is very expensive
      * you can choose the method findListByPagination(...) and findByPagination(..) for fetch by pagination
      */
-    BaseDTO<List<R>> findAll(Criteria criteria);
+    BaseDTO<List<R>> findAll(Query query);
 
     /**
      * @param page     is the number of page you need to fetch
@@ -87,15 +87,7 @@ public interface GeneralService<S, R, I extends Serializable> {
      * @param pageSize is the sizable page of data
      * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
      */
-    BaseDTO<PageDTO<List<R>>> findAll(int page, int pageSize, Criteria criteria);
-
-    /**
-     * @param page     is the number of page you need to fetch
-     * @param pageSize is the sizable page of data
-     * @param orders   orders is the list of fields and your direction such as Asc and Desc
-     * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
-     */
-    BaseDTO<PageDTO<List<R>>> findAll(int page, int pageSize, List<Sort> orders);
+    BaseDTO<PageDTO<List<R>>> findAll(int page, int pageSize, Query query);
 
 
     /**
@@ -108,5 +100,5 @@ public interface GeneralService<S, R, I extends Serializable> {
      * @return the number of data
      * @apiNote this method used for count of data objects
      */
-    BaseDTO<Long> count(Criteria criteria);
+    BaseDTO<Long> count(Query query);
 }
