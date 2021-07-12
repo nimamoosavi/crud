@@ -1,7 +1,6 @@
 package com.nicico.cost.crud.repository;
 
 
-import com.nicico.cost.crud.repository.GeneralRepository;
 import com.nicico.cost.framework.domain.dto.PageDTO;
 import com.nicico.cost.framework.packages.crud.view.Sort;
 

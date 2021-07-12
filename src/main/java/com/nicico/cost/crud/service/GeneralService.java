@@ -2,7 +2,6 @@ package com.nicico.cost.crud.service;
 
 import com.nicico.cost.framework.domain.dto.BaseDTO;
 import com.nicico.cost.framework.domain.dto.PageDTO;
-import com.nicico.cost.framework.packages.crud.view.Criteria;
 import com.nicico.cost.framework.packages.crud.view.Query;
 
 import javax.validation.constraints.NotNull;
