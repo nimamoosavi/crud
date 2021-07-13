@@ -5,7 +5,7 @@ import com.nicico.cost.crud.domain.view.TreeResVM;
 import com.nicico.cost.crud.service.TreeService;
 import com.nicico.cost.framework.domain.dto.BaseDTO;
 import com.nicico.cost.framework.domain.dto.PageDTO;
-import com.nicico.cost.framework.packages.crud.view.Sort;
+import com.nicico.cost.framework.packages.crud.view.Query;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ import static com.nicico.cost.framework.config.general.GeneralStatic.*;
  * @version 1.0.1
  * @apiNote this class is baseController that you can extended your rest controller and you must create bean of it
  */
-public abstract class TreeController<S extends TreeReqVM<I>, R extends TreeResVM<I>, I extends Serializable> extends BaseController<S,R,I> {
+public abstract class TreeController<S extends TreeReqVM<I>, R extends TreeResVM<I>, I extends Serializable> extends BaseController<S, R, I> {
 
     /**
      * General service used for all implementation of controller service
@@ -71,8 +71,8 @@ public abstract class TreeController<S extends TreeReqVM<I>, R extends TreeResVM
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
     @PostMapping(value = "/tree/root-parents/sorts")
-    public ResponseEntity<BaseDTO<List<R>>> findAllRootParentBySorts(@RequestBody List<Sort> sorts) {
-        return new ResponseEntity<>(treeService.findAllRootParent(sorts), HttpStatus.OK);
+    public ResponseEntity<BaseDTO<List<R>>> findAllRootParentBySorts(@RequestBody Query query) {
+        return new ResponseEntity<>(treeService.findAllRootParent(query), HttpStatus.OK);
     }
 
     /**
@@ -84,8 +84,8 @@ public abstract class TreeController<S extends TreeReqVM<I>, R extends TreeResVM
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
     @PostMapping(value = "/tree/root-parents/pagination/sorts")
-    public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findAllRootParentByPagination(@RequestParam Integer page, @Valid @RequestParam Integer pageSize, @RequestBody List<Sort> sorts) {
-        return new ResponseEntity<>(treeService.findAllRootParent(page,pageSize,sorts), HttpStatus.OK);
+    public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findAllRootParentByPagination(@RequestParam Integer page, @Valid @RequestParam Integer pageSize, @RequestBody Query query) {
+        return new ResponseEntity<>(treeService.findAllRootParent(page, pageSize, query), HttpStatus.OK);
     }
 
 
@@ -124,8 +124,8 @@ public abstract class TreeController<S extends TreeReqVM<I>, R extends TreeResVM
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
     @PostMapping(value = "/tree/child/pagination/sort")
-    public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findAllChildByParent(@RequestParam I parentId, @Valid @RequestParam Integer page, @RequestParam Integer pageSize, @RequestBody List<Sort> sorts) {
-        return new ResponseEntity<>(treeService.findAll(page, pageSize, sorts, parentId), HttpStatus.OK);
+    public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findAllChildByParent(@RequestParam I parentId, @Valid @RequestParam Integer page, @RequestParam Integer pageSize, @RequestBody Query query) {
+        return new ResponseEntity<>(treeService.findAll(page, pageSize, query, parentId), HttpStatus.OK);
     }
 
 

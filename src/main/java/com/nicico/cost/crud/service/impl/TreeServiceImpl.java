@@ -1,15 +1,14 @@
 package com.nicico.cost.crud.service.impl;
 
 
+import com.nicico.cost.crud.domain.view.TreeReqVM;
+import com.nicico.cost.crud.domain.view.TreeResVM;
 import com.nicico.cost.crud.repository.TreeRepository;
+import com.nicico.cost.crud.service.TreeService;
 import com.nicico.cost.framework.anotations.Log;
 import com.nicico.cost.framework.domain.dto.BaseDTO;
 import com.nicico.cost.framework.domain.dto.PageDTO;
-import com.nicico.cost.framework.packages.crud.view.Sort;
-import com.nicico.cost.crud.domain.view.TreeReqVM;
-import com.nicico.cost.crud.domain.view.TreeResVM;
-
-import com.nicico.cost.crud.service.TreeService;
+import com.nicico.cost.framework.packages.crud.view.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
@@ -27,7 +26,7 @@ import static com.nicico.cost.framework.service.GeneralResponse.successCustomRes
  * @apiNote this class is BaseService that you can extended your Service Class and you must create bean of it
  */
 @Log
-public abstract class TreeServiceImpl<T,S extends TreeReqVM<I>, R extends TreeResVM<I>, I extends Serializable> extends GeneralServiceImpl<T,S,R,I> implements TreeService<S,R,I> {
+public abstract class TreeServiceImpl<T, S extends TreeReqVM<I>, R extends TreeResVM<I>, I extends Serializable> extends GeneralServiceImpl<T, S, R, I> implements TreeService<S, R, I> {
 
     /**
      * this class used for Repository layer that you must impl of method
@@ -48,8 +47,8 @@ public abstract class TreeServiceImpl<T,S extends TreeReqVM<I>, R extends TreeRe
         return successCustomResponse(listPageDTO);
     }
 
-    public BaseDTO<PageDTO<List<R>>> findAll(int page, int pageSize, List<Sort> orders, I pid) {
-        PageDTO<List<T>> all = treeRepository.findAll(page, pageSize, orders, pid);
+    public BaseDTO<PageDTO<List<R>>> findAll(int page, int pageSize, Query query, I pid) {
+        PageDTO<List<T>> all = treeRepository.findAll(page, pageSize, query, pid);
         PageDTO<List<R>> listPageDTO = generalMapper.mapToPageDTOResponse(all);
         return successCustomResponse(listPageDTO);
     }
@@ -61,14 +60,14 @@ public abstract class TreeServiceImpl<T,S extends TreeReqVM<I>, R extends TreeRe
     }
 
     @Override
-    public BaseDTO<List<R>> findAllRootParent(List<Sort> orders) {
-        List<T> all = treeRepository.findAllParent(orders);
+    public BaseDTO<List<R>> findAllRootParent(Query query) {
+        List<T> all = treeRepository.findAllParent(query);
         return generalMapper.mapListBaseObjectToResponse(all);
     }
 
     @Override
-    public BaseDTO<PageDTO<List<R>>> findAllRootParent(int page, int pageSize, List<Sort> orders) {
-        PageDTO<List<T>> parent = treeRepository.findAllParent(page, pageSize, orders);
+    public BaseDTO<PageDTO<List<R>>> findAllRootParent(int page, int pageSize, Query query) {
+        PageDTO<List<T>> parent = treeRepository.findAllParent(page, pageSize, query);
         PageDTO<List<R>> listPageDTO = generalMapper.mapToPageDTOResponse(parent);
         return successCustomResponse(listPageDTO);
     }

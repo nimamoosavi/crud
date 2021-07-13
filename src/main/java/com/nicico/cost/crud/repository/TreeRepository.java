@@ -2,7 +2,7 @@ package com.nicico.cost.crud.repository;
 
 
 import com.nicico.cost.framework.domain.dto.PageDTO;
-import com.nicico.cost.framework.packages.crud.view.Sort;
+import com.nicico.cost.framework.packages.crud.view.Query;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,50 +14,56 @@ import java.util.List;
  * @implNote this class used for connect to data Base And you must implement this service in Your Library
  * @since 1.0.1
  */
-public interface TreeRepository<T, I extends Serializable> extends GeneralRepository<T,I>{
+public interface TreeRepository<T, I extends Serializable> extends GeneralRepository<T, I> {
 
     /**
-     * @return the List Of Entities
-     * @apiNote this methode uses for Fetch All Data
+     * find all root parent
+     *
+     * @return List<T> of parent
      */
     List<T> findAllParent();
 
     /**
-     * @return the List Of Entities
-     * @apiNote this methode uses for Fetch All Data
+     * @param query the Object you can set for where clause
+     * @return the list of Parent
      */
-    List<T> findAllParent(List<Sort> orders);
+    List<T> findAllParent(Query query);
 
     /**
-     * @return the List Of Entities
-     * @apiNote this methode uses for Fetch All Data
+     * @param page     the page number that you want find in pagination
+     * @param pageSize the total of data that you need to fetch in per page
+     * @param query    the Object you can set for where clause
+     * @return PageDTO<List < T>>  that object of pagination
      */
-    PageDTO<List<T>> findAllParent(int page, int pageSize, List<Sort> orders);
+    PageDTO<List<T>> findAllParent(int page, int pageSize, Query query);
 
     /**
-     * @return the List Of Entities
-     * @apiNote this methode uses for Fetch All Data
+     * @param page     the page number that you want find in pagination
+     * @param pageSize the total of data that you need to fetch in per page
+     * @return PageDTO<List < T>>  that object of pagination
      */
     PageDTO<List<T>> findAllParent(int page, int pageSize);
 
     /**
-     * @return the List Of Entities
-     * @apiNote this methode uses for Fetch All Data
+     * @param pid the parent id for get child
+     * @return the list of Parent
      */
     List<T> findAll(I pid);
 
     /**
-     * @param page     the page number that you must fetch it
-     * @param pageSize the page Size of that you need to split Data
-     * @return the Optional List Of Entity from Response Of Data Base
+     * @param page     the page number that you want find in pagination
+     * @param pageSize the total of data that you need to fetch in per page
+     * @param pid      the parent id for get child
+     * @return PageDTO<List < T>>  that object of pagination {@link PageDTO}
      */
     PageDTO<List<T>> findAll(int page, int pageSize, I pid);
 
     /**
-     * @param page     the page number that you must fetch it
-     * @param pageSize the page Size of that you need to split Data
-     * @param orders   is the list of fields and your direction such as Asc and Desc for Sorting
-     * @return the Optional List Of Entity from Response Of Data Base
+     * @param page     the page number that you want find in pagination
+     * @param pageSize the total of data that you need to fetch in per page
+     * @param query    the Object you can set for where clause
+     * @param pid      the parent id for get child
+     * @return PageDTO<List < T>>  that object of pagination {@link PageDTO}
      */
-    PageDTO<List<T>> findAll(int page, int pageSize, List<Sort> orders, I pid);
+    PageDTO<List<T>> findAll(int page, int pageSize, Query query, I pid);
 }

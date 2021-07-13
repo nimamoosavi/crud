@@ -32,7 +32,7 @@ import static com.nicico.cost.framework.service.GeneralResponse.successCustomRes
  * @apiNote this class is BaseService that you can extended your Service Class and you must create bean of it
  */
 @Log
-public abstract class GeneralServiceImpl<T, S, R, I extends Serializable> implements GeneralService<S,R,I> {
+public abstract class GeneralServiceImpl<T, S, R, I extends Serializable> implements GeneralService<S, R, I> {
 
     /**
      * this class used for Repository layer that you must impl of method
@@ -68,7 +68,7 @@ public abstract class GeneralServiceImpl<T, S, R, I extends Serializable> implem
     }
 
     /**
-     * @param s  is the Request view Model that you can save it in Data Base
+     * @param s is the Request view Model that you can save it in Data Base
      * @return the result of view Model
      * @apiNote this method used for update the Data
      */
@@ -162,7 +162,7 @@ public abstract class GeneralServiceImpl<T, S, R, I extends Serializable> implem
     /**
      * @param page     is the number of page you need to fetch
      * @param pageSize is the sizable page of data
-     * @param query is the where clause of query
+     * @param query    is the where clause of query
      * @return BaseDTO<List < R>> the list of response view model Data
      */
     @Override
