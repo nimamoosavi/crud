@@ -17,8 +17,7 @@ import java.util.List;
 public interface TreeRepository<T, I extends Serializable> extends GeneralRepository<T, I> {
 
     /**
-     * find all root parent
-     *
+     * @apiNote find all root parent
      * @return List<T> of parent
      */
     List<T> findAllParent();

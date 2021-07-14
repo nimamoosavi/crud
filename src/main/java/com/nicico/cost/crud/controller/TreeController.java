@@ -45,7 +45,7 @@ public abstract class TreeController<S extends TreeReqVM<I>, R extends TreeResVM
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
-    @GetMapping(value = "/tree/root-parents")
+    @GetMapping(value = "/tree/root")
     public ResponseEntity<BaseDTO<List<R>>> findAllRootParent() {
         return new ResponseEntity<>(treeService.findAllRootParent(), HttpStatus.OK);
     }
@@ -57,7 +57,7 @@ public abstract class TreeController<S extends TreeReqVM<I>, R extends TreeResVM
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
-    @GetMapping(value = "/tree/root-parents/pagination")
+    @GetMapping(value = "/tree/root/pagination")
     public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findAllRootParentByPagination(@RequestParam Integer page, @Valid @RequestParam Integer pageSize) {
         return new ResponseEntity<>(treeService.findAllRootParent(page, pageSize), HttpStatus.OK);
     }
@@ -70,7 +70,7 @@ public abstract class TreeController<S extends TreeReqVM<I>, R extends TreeResVM
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
-    @PostMapping(value = "/tree/root-parents/sorts")
+    @PostMapping(value = "/tree/root/query")
     public ResponseEntity<BaseDTO<List<R>>> findAllRootParentBySorts(@RequestBody Query query) {
         return new ResponseEntity<>(treeService.findAllRootParent(query), HttpStatus.OK);
     }
@@ -83,7 +83,7 @@ public abstract class TreeController<S extends TreeReqVM<I>, R extends TreeResVM
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
-    @PostMapping(value = "/tree/root-parents/pagination/sorts")
+    @PostMapping(value = "/tree/root/pagination/query")
     public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findAllRootParentByPagination(@RequestParam Integer page, @Valid @RequestParam Integer pageSize, @RequestBody Query query) {
         return new ResponseEntity<>(treeService.findAllRootParent(page, pageSize, query), HttpStatus.OK);
     }
@@ -123,7 +123,7 @@ public abstract class TreeController<S extends TreeReqVM<I>, R extends TreeResVM
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CLIENT_VERSION, value = CLIENT_VERSION, required = true, dataType = "string", paramType = "header")})
-    @PostMapping(value = "/tree/child/pagination/sort")
+    @PostMapping(value = "/tree/child/pagination/query")
     public ResponseEntity<BaseDTO<PageDTO<List<R>>>> findAllChildByParent(@RequestParam I parentId, @Valid @RequestParam Integer page, @RequestParam Integer pageSize, @RequestBody Query query) {
         return new ResponseEntity<>(treeService.findAll(page, pageSize, query, parentId), HttpStatus.OK);
     }
