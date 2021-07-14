@@ -111,9 +111,9 @@ public abstract class GeneralServiceImpl<T, S, R, I extends Serializable> implem
     public BaseDTO<Boolean> existsById(@NotNull I id) {
         Optional<T> tOptional = generalRepository.findById(id);
         if (tOptional.isPresent())
-            return successCustomResponse(true);
+            return successCustomResponse(Boolean.TRUE);
         else
-            return successCustomResponse(false);
+            return successCustomResponse(Boolean.FALSE);
     }
 
     /**
