@@ -15,6 +15,8 @@ import javax.validation.Valid;
 import java.io.Serializable;
 import java.util.List;
 
+import static com.webold.framework.config.general.GeneralStatic.*;
+
 /**
  * @param <S> is request view model that you must create and added
  * @param <R> is the response view model that you can response it from service
