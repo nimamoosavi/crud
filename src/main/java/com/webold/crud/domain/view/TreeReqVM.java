@@ -1,4 +1,4 @@
-package com.nicico.cost.crud.domain.view;
+package com.webold.crud.domain.view;
 
 import lombok.Data;
 

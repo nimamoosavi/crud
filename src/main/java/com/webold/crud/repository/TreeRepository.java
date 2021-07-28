@@ -1,8 +1,8 @@
-package com.nicico.cost.crud.repository;
+package com.webold.crud.repository;
 
 
-import com.nicico.cost.framework.domain.dto.PageDTO;
-import com.nicico.cost.framework.packages.crud.view.Query;
+import com.webold.framework.domain.dto.PageDTO;
+import com.webold.framework.packages.crud.view.Query;
 
 import java.io.Serializable;
 import java.util.List;

@@ -1,20 +1,20 @@
-package com.nicico.cost.crud.service.impl;
+package com.webold.crud.service.impl;
 
 
-import com.nicico.cost.crud.domain.view.TreeReqVM;
-import com.nicico.cost.crud.domain.view.TreeResVM;
-import com.nicico.cost.crud.repository.TreeRepository;
-import com.nicico.cost.crud.service.TreeService;
-import com.nicico.cost.framework.anotations.Log;
-import com.nicico.cost.framework.domain.dto.BaseDTO;
-import com.nicico.cost.framework.domain.dto.PageDTO;
-import com.nicico.cost.framework.packages.crud.view.Query;
+import com.webold.crud.domain.view.TreeReqVM;
+import com.webold.crud.domain.view.TreeResVM;
+import com.webold.crud.repository.TreeRepository;
+import com.webold.crud.service.TreeService;
+import com.webold.framework.anotations.Log;
+import com.webold.framework.domain.dto.BaseDTO;
+import com.webold.framework.domain.dto.PageDTO;
+import com.webold.framework.packages.crud.view.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
 import java.util.List;
 
-import static com.nicico.cost.framework.service.GeneralResponse.successCustomResponse;
+import static com.webold.framework.service.GeneralResponse.successCustomResponse;
 
 /**
  * @param <S> is request view model that you must create and added
@@ -22,7 +22,7 @@ import static com.nicico.cost.framework.service.GeneralResponse.successCustomRes
  * @param <I> is the type of data base Identity class such as Long,String, ...
  * @author nima
  * @version 1.0.1
- * @implNote @Log {@link com.nicico.cost.framework.anotations.Log} Used For Log But if you need to Used It you must add Audit Library to Your Project
+ * @implNote @Log {@link Log} Used For Log But if you need to Used It you must add Audit Library to Your Project
  * @apiNote this class is BaseService that you can extended your Service Class and you must create bean of it
  */
 @Log

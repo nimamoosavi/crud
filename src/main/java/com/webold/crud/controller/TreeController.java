@@ -1,11 +1,11 @@
-package com.nicico.cost.crud.controller;
+package com.webold.crud.controller;
 
-import com.nicico.cost.crud.domain.view.TreeReqVM;
-import com.nicico.cost.crud.domain.view.TreeResVM;
-import com.nicico.cost.crud.service.TreeService;
-import com.nicico.cost.framework.domain.dto.BaseDTO;
-import com.nicico.cost.framework.domain.dto.PageDTO;
-import com.nicico.cost.framework.packages.crud.view.Query;
+import com.webold.crud.domain.view.TreeReqVM;
+import com.webold.crud.domain.view.TreeResVM;
+import com.webold.crud.service.TreeService;
+import com.webold.framework.domain.dto.BaseDTO;
+import com.webold.framework.domain.dto.PageDTO;
+import com.webold.framework.packages.crud.view.Query;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import javax.validation.Valid;
 import java.io.Serializable;
 import java.util.List;
 
-import static com.nicico.cost.framework.config.general.GeneralStatic.*;
+import static com.webold.framework.config.general.GeneralStatic.*;
 
 /**
  * @param <S> is request view model that you must create and added

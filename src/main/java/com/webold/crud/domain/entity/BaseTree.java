@@ -1,4 +1,4 @@
-package com.nicico.cost.crud.domain.entity;
+package com.webold.crud.domain.entity;
 
 import lombok.AccessLevel;
 import lombok.Getter;

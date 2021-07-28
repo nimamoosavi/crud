@@ -1,16 +1,16 @@
-package com.nicico.cost.crud.service.impl;
+package com.webold.crud.service.impl;
 
 
-import com.nicico.cost.crud.mapper.GeneralMapper;
-import com.nicico.cost.crud.repository.GeneralRepository;
-import com.nicico.cost.crud.service.GeneralService;
-import com.nicico.cost.framework.anotations.Log;
-import com.nicico.cost.framework.domain.dto.BaseDTO;
-import com.nicico.cost.framework.domain.dto.PageDTO;
-import com.nicico.cost.framework.enums.exception.ExceptionEnum;
-import com.nicico.cost.framework.packages.crud.view.Query;
-import com.nicico.cost.framework.service.exception.ApplicationException;
-import com.nicico.cost.framework.service.exception.ServiceException;
+import com.webold.crud.mapper.GeneralMapper;
+import com.webold.crud.repository.GeneralRepository;
+import com.webold.crud.service.GeneralService;
+import com.webold.framework.anotations.Log;
+import com.webold.framework.domain.dto.BaseDTO;
+import com.webold.framework.domain.dto.PageDTO;
+import com.webold.framework.enums.exception.ExceptionEnum;
+import com.webold.framework.packages.crud.view.Query;
+import com.webold.framework.service.exception.ApplicationException;
+import com.webold.framework.service.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +20,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
-import static com.nicico.cost.framework.service.GeneralResponse.successCustomResponse;
+import static com.webold.framework.service.GeneralResponse.successCustomResponse;
 
 /**
  * @param <S> is request view model that you must create and added
@@ -28,7 +28,7 @@ import static com.nicico.cost.framework.service.GeneralResponse.successCustomRes
  * @param <I> is the type of data base Identity class such as Long,String, ...
  * @author nima
  * @version 1.0.1
- * @implNote @Log {@link com.nicico.cost.framework.anotations.Log} Used For Log But if you need to Used It you must add Audit Library to Your Project
+ * @implNote @Log {@link Log} Used For Log But if you need to Used It you must add Audit Library to Your Project
  * @apiNote this class is BaseService that you can extended your Service Class and you must create bean of it
  */
 @Log

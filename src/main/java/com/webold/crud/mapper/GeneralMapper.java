@@ -1,12 +1,12 @@
-package com.nicico.cost.crud.mapper;
+package com.webold.crud.mapper;
 
-import com.nicico.cost.framework.domain.dto.BaseDTO;
-import com.nicico.cost.framework.domain.dto.PageDTO;
+import com.webold.framework.domain.dto.BaseDTO;
+import com.webold.framework.domain.dto.PageDTO;
 
 import java.util.List;
 
-import static com.nicico.cost.framework.service.GeneralResponse.successCustomListResponse;
-import static com.nicico.cost.framework.service.GeneralResponse.successCustomResponse;
+import static com.webold.framework.service.GeneralResponse.successCustomListResponse;
+import static com.webold.framework.service.GeneralResponse.successCustomResponse;
 
 /**
  * @param <T> is the object class
