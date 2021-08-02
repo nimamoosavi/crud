@@ -1,4 +1,4 @@
-package com.webold.crud.domain.view;
+package app.ladderproject.crud.domain.view;
 
 import lombok.Data;
 

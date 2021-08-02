@@ -1,4 +1,4 @@
-package com.webold.crud.repository;
+package app.ladderproject.crud.repository;
 
 
 import com.webold.framework.domain.dto.PageDTO;

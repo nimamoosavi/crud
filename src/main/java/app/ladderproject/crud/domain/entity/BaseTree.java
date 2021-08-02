@@ -1,4 +1,4 @@
-package com.webold.crud.domain.entity;
+package app.ladderproject.crud.domain.entity;
 
 import lombok.AccessLevel;
 import lombok.Getter;

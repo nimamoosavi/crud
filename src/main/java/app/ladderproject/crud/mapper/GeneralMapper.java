@@ -1,12 +1,10 @@
-package com.webold.crud.mapper;
+package app.ladderproject.crud.mapper;
 
-import com.webold.framework.domain.dto.BaseDTO;
-import com.webold.framework.domain.dto.PageDTO;
+
+import app.ladderproject.core.domain.dto.PageDTO;
 
 import java.util.List;
 
-import static com.webold.framework.service.GeneralResponse.successCustomListResponse;
-import static com.webold.framework.service.GeneralResponse.successCustomResponse;
 
 /**
  * @param <T> is the object class

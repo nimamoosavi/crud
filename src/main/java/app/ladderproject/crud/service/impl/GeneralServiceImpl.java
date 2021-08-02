@@ -1,16 +1,13 @@
-package com.webold.crud.service.impl;
+package app.ladderproject.crud.service.impl;
 
 
-import com.webold.crud.mapper.GeneralMapper;
-import com.webold.crud.repository.GeneralRepository;
-import com.webold.crud.service.GeneralService;
-import com.webold.framework.anotations.Log;
-import com.webold.framework.domain.dto.BaseDTO;
-import com.webold.framework.domain.dto.PageDTO;
-import com.webold.framework.enums.exception.ExceptionEnum;
-import com.webold.framework.packages.crud.view.Query;
-import com.webold.framework.service.exception.ApplicationException;
-import com.webold.framework.service.exception.ServiceException;
+import app.ladderproject.core.anotations.Log;
+import app.ladderproject.core.domain.dto.BaseDTO;
+import app.ladderproject.core.service.exception.ApplicationException;
+import app.ladderproject.core.service.exception.ServiceException;
+import app.ladderproject.crud.mapper.GeneralMapper;
+import app.ladderproject.crud.repository.GeneralRepository;
+import app.ladderproject.crud.service.GeneralService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +17,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
-import static com.webold.framework.service.GeneralResponse.successCustomResponse;
 
 /**
  * @param <S> is request view model that you must create and added

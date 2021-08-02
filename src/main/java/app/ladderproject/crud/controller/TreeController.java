@@ -1,8 +1,8 @@
-package com.webold.crud.controller;
+package app.ladderproject.crud.controller;
 
-import com.webold.crud.domain.view.TreeReqVM;
-import com.webold.crud.domain.view.TreeResVM;
-import com.webold.crud.service.TreeService;
+import app.ladderproject.crud.service.TreeService;
+import app.ladderproject.crud.domain.view.TreeReqVM;
+import app.ladderproject.crud.domain.view.TreeResVM;
 import com.webold.framework.domain.dto.BaseDTO;
 import com.webold.framework.domain.dto.PageDTO;
 import com.webold.framework.packages.crud.view.Query;
@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.validation.Valid;
 import java.io.Serializable;
 import java.util.List;
-
-import static com.webold.framework.config.general.GeneralStatic.*;
 
 /**
  * @param <S> is request view model that you must create and added

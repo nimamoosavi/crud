@@ -1,10 +1,10 @@
-package com.webold.crud.service;
+package app.ladderproject.crud.service;
 
-import com.webold.crud.domain.view.TreeReqVM;
-import com.webold.crud.domain.view.TreeResVM;
-import com.webold.framework.domain.dto.BaseDTO;
-import com.webold.framework.domain.dto.PageDTO;
-import com.webold.framework.packages.crud.view.Query;
+import app.ladderproject.core.domain.dto.BaseDTO;
+import app.ladderproject.core.domain.dto.PageDTO;
+import app.ladderproject.core.packages.crud.view.Query;
+import app.ladderproject.crud.domain.view.TreeReqVM;
+import app.ladderproject.crud.domain.view.TreeResVM;
 
 import java.io.Serializable;
 import java.util.List;

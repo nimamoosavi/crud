@@ -1,9 +1,7 @@
-package com.webold.crud.controller;
+package app.ladderproject.crud.controller;
 
-import com.webold.crud.service.GeneralService;
-import com.webold.framework.domain.dto.BaseDTO;
-import com.webold.framework.domain.dto.PageDTO;
-import com.webold.framework.packages.crud.view.Query;
+import app.ladderproject.core.domain.dto.BaseDTO;
+import app.ladderproject.crud.service.GeneralService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,7 @@ import javax.validation.Valid;
 import java.io.Serializable;
 import java.util.List;
 
-import static com.webold.framework.config.general.GeneralStatic.*;
+import static app.ladderproject.core.config.general.GeneralStatic.*;
 
 /**
  * @param <S> is request view model that you must create and added
