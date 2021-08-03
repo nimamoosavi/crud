@@ -3,6 +3,8 @@ package app.ladderproject.crud.service.impl;
 
 import app.ladderproject.core.anotations.Log;
 import app.ladderproject.core.domain.dto.BaseDTO;
+import app.ladderproject.core.domain.dto.PageDTO;
+import app.ladderproject.core.packages.crud.view.Query;
 import app.ladderproject.core.service.exception.ApplicationException;
 import app.ladderproject.core.service.exception.ServiceException;
 import app.ladderproject.crud.mapper.GeneralMapper;
@@ -16,6 +18,9 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
+
+import static app.ladderproject.core.enums.exception.ExceptionEnum.NOTFOUND;
+import static app.ladderproject.core.service.GeneralResponse.successCustomResponse;
 
 
 /**
@@ -94,7 +99,7 @@ public abstract class GeneralServiceImpl<T, S, R, I extends Serializable> implem
      */
     public BaseDTO<R> findById(@NotNull I id) {
         T t = generalRepository.findById(id).orElseThrow(
-                () -> applicationException.createApplicationException(ExceptionEnum.NOTFOUND, HttpStatus.NOT_FOUND)
+                () -> applicationException.createApplicationException(NOTFOUND, HttpStatus.NOT_FOUND)
         );
         return generalMapper.mapBaseObjectToResponse(t);
     }

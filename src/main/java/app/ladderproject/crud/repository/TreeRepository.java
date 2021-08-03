@@ -1,8 +1,9 @@
 package app.ladderproject.crud.repository;
 
 
-import com.webold.framework.domain.dto.PageDTO;
-import com.webold.framework.packages.crud.view.Query;
+
+import app.ladderproject.core.domain.dto.PageDTO;
+import app.ladderproject.core.packages.crud.view.Query;
 
 import java.io.Serializable;
 import java.util.List;

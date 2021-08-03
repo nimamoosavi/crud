@@ -1,20 +1,21 @@
 package app.ladderproject.crud.service.impl;
 
 
+import app.ladderproject.core.anotations.Log;
+import app.ladderproject.core.domain.dto.BaseDTO;
+import app.ladderproject.core.domain.dto.PageDTO;
+import app.ladderproject.core.packages.crud.view.Query;
 import app.ladderproject.crud.domain.view.TreeReqVM;
 import app.ladderproject.crud.domain.view.TreeResVM;
 import app.ladderproject.crud.repository.TreeRepository;
 import app.ladderproject.crud.service.TreeService;
-import com.webold.framework.anotations.Log;
-import com.webold.framework.domain.dto.BaseDTO;
-import com.webold.framework.domain.dto.PageDTO;
-import com.webold.framework.packages.crud.view.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
 import java.util.List;
 
-import static com.webold.framework.service.GeneralResponse.successCustomResponse;
+import static app.ladderproject.core.service.GeneralResponse.successCustomResponse;
+
 
 /**
  * @param <S> is request view model that you must create and added

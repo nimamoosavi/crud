@@ -1,6 +1,8 @@
 package app.ladderproject.crud.controller;
 
 import app.ladderproject.core.domain.dto.BaseDTO;
+import app.ladderproject.core.domain.dto.PageDTO;
+import app.ladderproject.core.packages.crud.view.Query;
 import app.ladderproject.crud.service.GeneralService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

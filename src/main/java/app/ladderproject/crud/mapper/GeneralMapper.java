@@ -1,9 +1,13 @@
 package app.ladderproject.crud.mapper;
 
 
+import app.ladderproject.core.domain.dto.BaseDTO;
 import app.ladderproject.core.domain.dto.PageDTO;
 
 import java.util.List;
+
+import static app.ladderproject.core.service.GeneralResponse.successCustomListResponse;
+import static app.ladderproject.core.service.GeneralResponse.successCustomResponse;
 
 
 /**
