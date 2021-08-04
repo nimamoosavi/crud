@@ -1,7 +1,6 @@
 package app.ladderproject.crud.repository;
 
 
-
 import app.ladderproject.core.domain.dto.PageDTO;
 import app.ladderproject.core.packages.crud.view.Query;
 
@@ -9,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @param <I> is the type of data base Identity class such as Long,String, ...
+ * @param <I> is the type of database Identity class such as Long,String, ...
  * @author nima
  * @version 1.0.1
  * @implNote this class used for connect to data Base And you must implement this service in Your Library
@@ -18,8 +17,8 @@ import java.util.List;
 public interface TreeRepository<T, I extends Serializable> extends GeneralRepository<T, I> {
 
     /**
-     * @apiNote find all root parent
      * @return List<T> of parent
+     * @apiNote find all root parent
      */
     List<T> findAllParent();
 

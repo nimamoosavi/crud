@@ -13,7 +13,7 @@ import static app.ladderproject.core.service.GeneralResponse.successCustomRespon
 /**
  * @param <T> is the object class
  * @param <S> is request view model that you must create and added
- * @param <R> is the response view model that you can response it from service
+ * @param <R> is the response view model that you can Response it from service
  * @author nima
  * @version 1.0.1
  * @apiNote this class used for map compile time and used is the protocol that implement by mapStruct library version 1.3.1.Final

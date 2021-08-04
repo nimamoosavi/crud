@@ -12,10 +12,10 @@ import java.util.List;
 /**
  * @param <S> is request view model that you must create and added
  * @param <R> is the response view model that you can response it from service
- * @param <I> is the type of data base Identity class such as Long,String, ...
+ * @param <I> is the type of database Identity class such as Long,String, ...
  * @author nima
  * @version 1.0.1
- * @apiNote this class is BaseService that you can extended your Service Class and you must create bean of it
+ * @apiNote this class is BaseService that you can extend your Service Class and you must create bean of it
  */
 public interface GeneralService<S, R, I extends Serializable> {
 
@@ -34,44 +34,44 @@ public interface GeneralService<S, R, I extends Serializable> {
     BaseDTO<List<R>> saveAll(List<S> sList);
 
     /**
-     * @param s  is the Request view Model that you can save it in Data Base
+     * @param s is the Request view Model that you can save it in Data Base
      * @return the result of view Model
      * @apiNote this method used for update the Data
      */
     BaseDTO<R> update(@NotNull S s);
 
     /**
-     * @param id is the incrementalId of data base
+     * @param id is the incrementalId of database
      * @return the result such as true or false
-     * @apiNote this methode used for delete Data with the incremental Id
+     * @apiNote this methode used for delete Data with the incrementalId
      */
     BaseDTO<Boolean> deleteById(@NotNull I id);
 
     /**
-     * @param id is the incrementalId of data base
+     * @param id is the incrementalId of database
      * @return BaseDTO<R> is the result of find that you can give it the Response View Model
-     * @apiNote this method used for fetch data from data base with the incremental Id of object
+     * @apiNote this method used for fetch data from database with the incrementalId of object
      */
     BaseDTO<R> findById(@NotNull I id);
 
     /**
-     * @param id is the incrementalId of data base
+     * @param id is the incrementalId of database
      * @return the result such as true or false
-     * @apiNote used for to know that this incremental Id is in Data Base Or Not
+     * @apiNote used for to know that this incrementalId is in Data Base Or Not
      */
     BaseDTO<Boolean> existsById(@NotNull I id);
 
     /**
      * @return BaseDTO<List < R>> the list of response view model Data
-     * @apiNote this method used for get all data from data base that you must know that the cost of this method is very expensive
-     * you can choose the method findListByPagination(...) and findByPagination(..) for fetch by pagination
+     * @apiNote this method used for get all data from databasethat you must know that the cost of this method is very expensive
+     * you can choose the method findListByPagination(...) and findByPagination(.) for fetch by pagination
      */
     BaseDTO<List<R>> findAll();
 
     /**
      * @return BaseDTO<List < R>> the list of response view model Data
-     * @apiNote this method used for get all data from data base that you must know that the cost of this method is very expensive
-     * you can choose the method findListByPagination(...) and findByPagination(..) for fetch by pagination
+     * @apiNote this method used for get all data from database that you must know that the cost of this method is very expensive
+     * you can choose the method findListByPagination(...) and findByPagination(.) for fetch by pagination
      */
     BaseDTO<List<R>> findAll(Query query);
 

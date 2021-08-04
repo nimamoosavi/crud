@@ -1,7 +1,6 @@
 package app.ladderproject.crud.repository;
 
 
-
 import app.ladderproject.core.domain.dto.PageDTO;
 import app.ladderproject.core.packages.crud.view.Query;
 
@@ -10,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * @param <I> is the type of data base Identity class such as Long,String, ...
+ * @param <I> is the type of database Identity class such as Long,String, ...
  * @author nima
  * @version 1.0.1
  * @implNote this class used for connect to data Base And you must implement this service in Your Library
@@ -19,14 +18,14 @@ import java.util.Optional;
 public interface GeneralRepository<T, I extends Serializable> {
     /**
      * @param t the Entity View Model that you must Add To Data Base
-     * @return the Optional Of Entity that save it in data base
+     * @return the Optional Of Entity that save it in database
      * @apiNote this method used for save Data in Data base
      */
     T save(T t);
 
     /**
-     * @param t  the Entity View Model that you must Add To Data Base
-     * @return the Optional Of Entity that save it in data base
+     * @param t the Entity View Model that you must Add To Data Base
+     * @return the Optional Of Entity that save it in database
      * @apiNote this method used for Update data Base Object
      */
     T update(T t);
@@ -40,8 +39,8 @@ public interface GeneralRepository<T, I extends Serializable> {
 
 
     /**
-     * @param id the incrementalId of data base Object
-     * @return the Optional Of Entity that save it in data base
+     * @param id the incrementalId of database Object
+     * @return the Optional Of Entity that save it in database
      * @apiNote used for fetch Data By IncrementalId
      */
     Optional<T> findById(I id);
@@ -90,7 +89,7 @@ public interface GeneralRepository<T, I extends Serializable> {
     long count(Query query);
 
     /**
-     * @param id is the incrementalId of Object that you need too remove it from Data Base
+     * @param id is the incrementalId of Object that you need to remove it from Data Base
      * @throws RuntimeException has throw if Delete Method Not Acceptable
      * @apiNote Used for delete Object From Incremental Id
      */

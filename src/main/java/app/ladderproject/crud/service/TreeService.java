@@ -22,7 +22,7 @@ import java.util.List;
 public interface TreeService<S extends TreeReqVM<I>, R extends TreeResVM<I>, I extends Serializable> extends GeneralService<S, R, I> {
 
     /**
-     * @return the All Root Filed that we call them Parent
+     * @return The all Root Filed that we call them Parent
      */
     BaseDTO<List<R>> findAllRootParent();
 
