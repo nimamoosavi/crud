@@ -36,7 +36,7 @@ public abstract class BaseController<S, R, I extends Serializable> {
     /**
      * @param s is the object of request model
      * @return ResponseEntity<BaseDTO < R>> that R the view model you must add to controller
-     * @apiNote this method save data to DataBase that you must implemented in repository layer
+     * @apiNote this method save data to DataBase that you must implement in repository layer
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
@@ -49,7 +49,7 @@ public abstract class BaseController<S, R, I extends Serializable> {
     /**
      * @param s is the object of request model
      * @return ResponseEntity<BaseDTO < R>> that R the view model you must add to controller
-     * @apiNote this method save data to DataBase that you must implemented in repository layer
+     * @apiNote this method save data to DataBase that you must implement in repository layer
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
@@ -62,7 +62,7 @@ public abstract class BaseController<S, R, I extends Serializable> {
     /**
      * @param id is your IncrementalId of DataBase
      * @return ResponseEntity<BaseDTO < Boolean>> is the true or false result in BaseDTO pattern
-     * @apiNote used for delete an entity from data base
+     * @apiNote used for delete an entity from database
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
@@ -75,7 +75,7 @@ public abstract class BaseController<S, R, I extends Serializable> {
     /**
      * @param id is your IncrementalId of DataBase
      * @return ResponseEntity<BaseDTO < R>> that R the view model you must add to controller
-     * @apiNote this method used for get object from Identify number of data base
+     * @apiNote this method used for get object from Identify number of database
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
@@ -88,7 +88,7 @@ public abstract class BaseController<S, R, I extends Serializable> {
 
     /**
      * @return ResponseEntity<BaseDTO < List < R>>> that R the view model you must add to controller
-     * @apiNote used for getAll data from data base , you must know that the cost of this method is high and you can used
+     * @apiNote used for getAll data from database , you must know that the cost of this method is high and you can used
      * findListByPagination Or findByPagination for fetch data
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
