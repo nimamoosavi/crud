@@ -69,3 +69,8 @@ this project create default crud and used mapstruct library for casting object t
         </plugins>
     </build>
 ~~~
+
+# Sample Project
+this project used Crud Project And Jdbc Project And Core And ...
+
+- [Sample Project](https://github.com/nimamoosavi/sample-project-crud)
