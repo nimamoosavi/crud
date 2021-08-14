@@ -5,14 +5,15 @@ mongo client project , jdbc client project or micro client or your implementatio
 
 ## [Core](https://github.com/nimamoosavi/core/wiki)
 
-[[images/framework-diagram.jpg | "Crud Diagram"]]
+![Core Diagram](https://github.com/nimamoosavi/crud/wiki/images/framework-diagram.jpg)
 
 
 ### Structure
 
 this project create default crud and used mapstruct library for casting object to another object
 
-[[/images/crud.jpg | "Crud Diagram"]]
+![Core Diagram](https://github.com/nimamoosavi/crud/wiki/images/crud.jpg)
+
 - [BaseController](BaseController)
 - [GeneralService](GeneralService)
 - [GeneralMapper](GeneralMapper)
