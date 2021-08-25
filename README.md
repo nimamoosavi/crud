@@ -71,7 +71,25 @@ this project create default crud and used mapstruct library for casting object t
     </build>
 ~~~
 
+# implementation
+
+this project that need to connect to another microservice and the repository layer implement in some other project
+- [jdbc-client Project](https://github.com/nimamoosavi/jdbc-client)
+
+> this implementation use for connect to relational Database
+
+
+- [mongo-client Project](https://github.com/nimamoosavi/mongo-client)
+
+> this implementation use for connect to mongoDb service
+
+
+and this list updated in the future
+
+
 # Sample Project
 this project used Crud Project And Jdbc Project And Core And ...
 
 - [Sample Project](https://github.com/nimamoosavi/sample-project-crud)
+
+
