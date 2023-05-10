@@ -19,18 +19,18 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
-import static app.ladderproject.core.enums.exception.ExceptionEnum.NOTFOUND;
+import static app.ladderproject.core.enums.exception.Exceptions.NOTFOUND;
 import static app.ladderproject.core.service.GeneralResponse.successCustomResponse;
 
 
 /**
  * @param <S> is request view model that you must create and added
- * @param <R> is the response view model that you can response it from service
- * @param <I> is the type of data base Identity class such as Long,String, ...
+ * @param <R> is the response view model that you can respond it from service
+ * @param <I> is the type of database Identity class such as Long,String, ...
  * @author nima
  * @version 1.0.1
- * @implNote @Log {@link Log} Used For Log But if you need to Used It you must add Audit Library to Your Project
- * @apiNote this class is BaseService that you can extended your Service Class and you must create bean of it
+ * @implNote @Log {@link Log} Used For Log But if you need to Used It, you must add Audit Library to Your Project
+ * @apiNote this class is BaseService that you can extend your Service Class, and you must create bean of it
  */
 @Log
 public abstract class GeneralServiceImpl<T, S, R, I extends Serializable> implements GeneralService<S, R, I> {
@@ -58,7 +58,7 @@ public abstract class GeneralServiceImpl<T, S, R, I extends Serializable> implem
 
     /**
      * @param sList is the list of Request view Model that you can save it in Data Base
-     * @return the list of Response of view model
+     * @return the list of Response of a view model
      * @apiNote this method used for save batch in Data base
      */
     @Transactional
@@ -81,9 +81,9 @@ public abstract class GeneralServiceImpl<T, S, R, I extends Serializable> implem
     }
 
     /**
-     * @param id is the incrementalId of data base
+     * @param id is the incrementalId of database
      * @return the result such as true or false
-     * @apiNote this methode used for delete Data with the incremental Id
+     * @apiNote this methode used for deleted Data with the incremental I'd
      */
     @Transactional
     public BaseDTO<Boolean> deleteById(@NotNull I id) {
@@ -93,9 +93,9 @@ public abstract class GeneralServiceImpl<T, S, R, I extends Serializable> implem
 
 
     /**
-     * @param id is the incrementalId of data base
+     * @param id is the incrementalId of database
      * @return BaseDTO<R> is the result of find that you can give it the Response View Model
-     * @apiNote this method used for fetch data from data base with the incremental Id of object
+     * @apiNote this method used for fetch data from database with the incremental I'd of object
      */
     public BaseDTO<R> findById(@NotNull I id) {
         T t = generalRepository.findById(id).orElseThrow(
@@ -105,9 +105,9 @@ public abstract class GeneralServiceImpl<T, S, R, I extends Serializable> implem
     }
 
     /**
-     * @param id is the incrementalId of data base
+     * @param id is the incrementalId of database
      * @return the result such as true or false
-     * @apiNote used for to know that this incremental Id is in Data Base Or Not
+     * @apiNote used for to know that this incremental I'd be in Data Base Or Not
      */
     public BaseDTO<Boolean> existsById(@NotNull I id) {
         Optional<T> tOptional = generalRepository.findById(id);
@@ -119,7 +119,7 @@ public abstract class GeneralServiceImpl<T, S, R, I extends Serializable> implem
 
     /**
      * @return BaseDTO<List < R>> the list of response view model Data
-     * @apiNote this method used for get all data from data base that you must know that the cost of this method is very expensive
+     * @apiNote this method used for get all data from a database that you must know that the cost of this method is very expensive
      * you can choose the method findListByPagination(...) and findByPagination(..) for fetch by pagination
      */
     public BaseDTO<List<R>> findAll() {
@@ -128,8 +128,8 @@ public abstract class GeneralServiceImpl<T, S, R, I extends Serializable> implem
     }
 
     /**
-     * @param page     is the number of page you need to fetch
-     * @param pageSize is the sizable page of data
+     * @param page     is the number of pages you need to fetch
+     * @param pageSize is a sizable page of data
      * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
      */
     public BaseDTO<PageDTO<List<R>>> findAll(int page, int pageSize) {
@@ -149,9 +149,9 @@ public abstract class GeneralServiceImpl<T, S, R, I extends Serializable> implem
     }
 
     /**
-     * @param query is the where clause of query
+     * @param query is the where clause of a query?
      * @return BaseDTO<List < R>> the list of response view model Data
-     * @apiNote this method used for get all data from data base that you must know that the cost of this method is very expensive
+     * @apiNote this method used for get all data from a database that you must know that the cost of this method is very expensive
      * you can choose the method findListByPagination(...) and findByPagination(..) for fetch by pagination
      */
     @Override
@@ -161,9 +161,9 @@ public abstract class GeneralServiceImpl<T, S, R, I extends Serializable> implem
     }
 
     /**
-     * @param page     is the number of page you need to fetch
-     * @param pageSize is the sizable page of data
-     * @param query    is the where clause of query
+     * @param page     is the number of pages you need to fetch
+     * @param pageSize is a sizable page of data
+     * @param query    is the where clause of a query?
      * @return BaseDTO<List < R>> the list of response view model Data
      */
     @Override

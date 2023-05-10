@@ -24,7 +24,7 @@ import static app.ladderproject.core.config.general.GeneralStatic.*;
 
 /**
  * @param <S> is request view model that you must create and added
- * @param <R> is the response view model that you can response it from service
+ * @param <R> is the response view model that you can respond it from service
  * @param <I> is the type of database Identity class such as Long,String, ...
  * @author nima
  * @version 1.0.1
@@ -33,14 +33,14 @@ import static app.ladderproject.core.config.general.GeneralStatic.*;
 public abstract class TreeController<S extends TreeReqVM<I>, R extends TreeResVM<I>, I extends Serializable> extends BaseController<S, R, I> {
 
     /**
-     * General service used for all implementation of controller service
+     * General service used for all implementations of controller service
      */
     @Autowired
     TreeService<S, R, I> treeService;
 
     /**
      * @return ResponseEntity<BaseDTO < List < R>>> that R the view model you must add to controller
-     * @apiNote used for getAll data from database , you must know that the cost of this method is high, and you can use
+     * @apiNote used for getAll data from a database , you must know that the cost of this method is high, and you can use
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
@@ -52,7 +52,7 @@ public abstract class TreeController<S extends TreeReqVM<I>, R extends TreeResVM
 
     /**
      * @return ResponseEntity<BaseDTO < List < R>>> that R the view model you must add to controller
-     * @apiNote used for getAll data from database , you must know that the cost of this method is high, and you can use
+     * @apiNote used for getAll data from a database, you must know that the cost of this method is high, and you can use
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
@@ -64,7 +64,7 @@ public abstract class TreeController<S extends TreeReqVM<I>, R extends TreeResVM
 
     /**
      * @return ResponseEntity<BaseDTO < List < R>>> that R the view model you must add to controller
-     * @apiNote used for getAll data from database , you must know that the cost of this method is high and you can used
+     * @apiNote used for getAll data from a database, you must know that the cost of this method is high, and you can use
      * findListByPagination Or findByPagination for fetch data
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
@@ -77,7 +77,7 @@ public abstract class TreeController<S extends TreeReqVM<I>, R extends TreeResVM
 
     /**
      * @return ResponseEntity<BaseDTO < List < R>>> that R the view model you must add to controller
-     * @apiNote used for getAll data from database , you must know that the cost of this method is high, and you can use
+     * @apiNote used for getAll data from a database, you must know that the cost of this method is high, and you can use
      * findListByPagination Or findByPagination for fetch data
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
@@ -91,7 +91,7 @@ public abstract class TreeController<S extends TreeReqVM<I>, R extends TreeResVM
 
     /**
      * @return ResponseEntity<BaseDTO < List < R>>> that R the view model you must add to controller
-     * @apiNote used for getAll data from database , you must know that the cost of this method is high and you can used
+     * @apiNote used for getAll data from a database, you must know that the cost of this method is high, and you can use
      * findListByPagination Or findByPagination for fetch data
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
@@ -104,7 +104,7 @@ public abstract class TreeController<S extends TreeReqVM<I>, R extends TreeResVM
 
     /**
      * @return ResponseEntity<BaseDTO < List < R>>> that R the view model you must add to controller
-     * @apiNote used for getAll data from database , you must know that the cost of this method is high, and you can use
+     * @apiNote used for getAll data from a database, you must know that the cost of this method is high, and you can use
      * findListByPagination Or findByPagination for fetch data
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
@@ -117,7 +117,7 @@ public abstract class TreeController<S extends TreeReqVM<I>, R extends TreeResVM
 
     /**
      * @return ResponseEntity<BaseDTO < List < R>>> that R the view model you must add to controller
-     * @apiNote used for getAll data from database , you must know that the cost of this method is high, and you can use
+     * @apiNote used for getAll data from a database, you must know that the cost of this method is high, and you can use
      * findListByPagination Or findByPagination for fetch data
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),

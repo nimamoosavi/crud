@@ -11,11 +11,11 @@ import java.util.List;
 
 /**
  * @param <S> is request view model that you must create and added
- * @param <R> is the response view model that you can response it from service
+ * @param <R> is the response view model that you can respond it from service
  * @param <I> is the type of database Identity class such as Long,String, ...
  * @author nima
  * @version 1.0.1
- * @apiNote this class is BaseService that you can extend your Service Class and you must create bean of it
+ * @apiNote this class is BaseService that you can extend your Service Class, and you must create bean of it
  */
 public interface GeneralService<S, R, I extends Serializable> {
 
@@ -28,7 +28,7 @@ public interface GeneralService<S, R, I extends Serializable> {
 
     /**
      * @param sList is the list of Request view Model that you can save it in Data Base
-     * @return the list of Response of view model
+     * @return the list of Response of a view model
      * @apiNote this method used for save batch in Data base
      */
     BaseDTO<List<R>> saveAll(List<S> sList);
@@ -43,14 +43,14 @@ public interface GeneralService<S, R, I extends Serializable> {
     /**
      * @param id is the incrementalId of database
      * @return the result such as true or false
-     * @apiNote this methode used for delete Data with the incrementalId
+     * @apiNote this methode used for deleted Data with the incrementalId
      */
     BaseDTO<Boolean> deleteById(@NotNull I id);
 
     /**
      * @param id is the incrementalId of database
      * @return BaseDTO<R> is the result of find that you can give it the Response View Model
-     * @apiNote this method used for fetch data from database with the incrementalId of object
+     * @apiNote this method used for fetch data from a database with the incrementalId of object
      */
     BaseDTO<R> findById(@NotNull I id);
 
@@ -63,28 +63,28 @@ public interface GeneralService<S, R, I extends Serializable> {
 
     /**
      * @return BaseDTO<List < R>> the list of response view model Data
-     * @apiNote this method used for get all data from databasethat you must know that the cost of this method is very expensive
+     * @apiNote this method used for get all data from a database you must know that the cost of this method is very expensive.
      * you can choose the method findListByPagination(...) and findByPagination(.) for fetch by pagination
      */
     BaseDTO<List<R>> findAll();
 
     /**
      * @return BaseDTO<List < R>> the list of response view model Data
-     * @apiNote this method used for get all data from database that you must know that the cost of this method is very expensive
+     * @apiNote this method used for get all data from a database that you must know that the cost of this method is very expensive
      * you can choose the method findListByPagination(...) and findByPagination(.) for fetch by pagination
      */
     BaseDTO<List<R>> findAll(Query query);
 
     /**
-     * @param page     is the number of page you need to fetch
-     * @param pageSize is the sizable page of data
+     * @param page     is the number of pages you need to fetch
+     * @param pageSize is a sizable page of data
      * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
      */
     BaseDTO<PageDTO<List<R>>> findAll(int page, int pageSize);
 
     /**
-     * @param page     is the number of page you need to fetch
-     * @param pageSize is the sizable page of data
+     * @param page     is the number of pages you need to fetch
+     * @param pageSize is a sizable page of data
      * @return BaseDTO<PageDTO < List < R>>> this methode return PageDTO that is all data in it
      */
     BaseDTO<PageDTO<List<R>>> findAll(int page, int pageSize, Query query);

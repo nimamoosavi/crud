@@ -19,16 +19,16 @@ import static app.ladderproject.core.config.general.GeneralStatic.*;
 
 /**
  * @param <S> is request view model that you must create and added
- * @param <R> is the response view model that you can response it from service
- * @param <I> is the type of data base Identity class such as Long,String, ...
+ * @param <R> is the response view model that you can respond it from service
+ * @param <I> is the type of database Identity class such as Long,String, ...
  * @author nima
  * @version 1.0.1
- * @apiNote this class is baseController that you can extended your rest controller and you must create bean of it
+ * @apiNote this class is baseController that you can extend your rest controller, and you must create bean of it
  */
 public abstract class BaseController<S, R, I extends Serializable> {
 
     /**
-     * General service used for all implementation of controller service
+     * General service used for all implementations of controller service
      */
     @Autowired
     GeneralService<S, R, I> generalService;
@@ -36,7 +36,7 @@ public abstract class BaseController<S, R, I extends Serializable> {
     /**
      * @param s is the object of request model
      * @return ResponseEntity<BaseDTO < R>> that R the view model you must add to controller
-     * @apiNote this method save data to DataBase that you must implement in repository layer
+     * @apiNote this method saves data to DataBase that you must implement in the repository layer
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
@@ -49,7 +49,7 @@ public abstract class BaseController<S, R, I extends Serializable> {
     /**
      * @param s is the object of request model
      * @return ResponseEntity<BaseDTO < R>> that R the view model you must add to controller
-     * @apiNote this method save data to DataBase that you must implement in repository layer
+     * @apiNote this method saves data to DataBase that you must implement in the repository layer
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
@@ -62,7 +62,7 @@ public abstract class BaseController<S, R, I extends Serializable> {
     /**
      * @param id is your IncrementalId of DataBase
      * @return ResponseEntity<BaseDTO < Boolean>> is the true or false result in BaseDTO pattern
-     * @apiNote used for delete an entity from database
+     * @apiNote used for delete an entity from a database
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
@@ -75,7 +75,7 @@ public abstract class BaseController<S, R, I extends Serializable> {
     /**
      * @param id is your IncrementalId of DataBase
      * @return ResponseEntity<BaseDTO < R>> that R the view model you must add to controller
-     * @apiNote this method used for get object from Identify number of database
+     * @apiNote this method used for get an object from Identify number of databases
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
             @ApiImplicitParam(name = CORRELATION_ID, value = CORRELATION_ID, required = true, dataType = "string", paramType = "header"),
@@ -88,7 +88,7 @@ public abstract class BaseController<S, R, I extends Serializable> {
 
     /**
      * @return ResponseEntity<BaseDTO < List < R>>> that R the view model you must add to controller
-     * @apiNote used for getAll data from database , you must know that the cost of this method is high and you can used
+     * @apiNote used for getAll data from a database, you must know that the cost of this method is high, and you can use
      * findListByPagination Or findByPagination for fetch data
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
@@ -100,8 +100,8 @@ public abstract class BaseController<S, R, I extends Serializable> {
     }
 
     /**
-     * @param page     is the number of page you need to fetch
-     * @param pageSize is the sizable page of data
+     * @param page     is the number of pages you need to fetch
+     * @param pageSize is a sizable page of data
      * @return ResponseEntity<BaseDTO < PageDTO < List < R>>>> this methode return PageDTO that is all data in it
      */
     @ApiImplicitParams({@ApiImplicitParam(name = AUTHORIZATION, value = AUTHORIZATION, required = true, dataType = "string", paramType = "header"),
@@ -125,8 +125,8 @@ public abstract class BaseController<S, R, I extends Serializable> {
     }
 
     /**
-     * @param page     is the number of page you need to fetch
-     * @param pageSize is the sizable page of data
+     * @param page     is the number of pages you need to fetch
+     * @param pageSize is a sizable page of data
      * @param query    is the object for query string
      * @return ResponseEntity<BaseDTO < PageDTO < List < R>>>> this methode return PageDTO that is all data in it
      */
